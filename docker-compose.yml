@@ -1,0 +1,51 @@
+version: "2"
+services:
+  web:
+    build:
+      context: .
+    container_name: app
+    depends_on:
+      - grafana
+      - influxdb
+    ports:
+      - 8080:8080
+    networks:
+      - monitoring
+    links:
+      - influxdb
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    restart: always
+    ports:
+      - 3030:3030
+    networks:
+      - monitoring
+    volumes:
+      - ./grafana:/etc/grafana/provisioning/
+    environment:
+      GF_SERVER_HTTP_PORT: 3030
+      GF_INSTALL_PLUGINS: https://github.com/cloudspout/cloudspout-button-panel/releases/download/7.0.2/cloudspout-button-panel.zip;cloudspout-button-panel
+  influxdb:
+    environment:
+      INFLUXDB_DB: vt
+      INFLUXDB_ADMIN_ENABLED: "true"
+      INFLUXDB_ADMIN_USER: admin
+      INFLUXDB_ADMIN_PASSWORD: supersecretpassword
+      INFLUXDB_USER: telegraf
+      INFLUXDB_USER_PASSWORD: secretpassword
+    image: influxdb
+    container_name: influxdb
+    restart: always
+    ports:
+      - 8086:8086
+    networks:
+      - monitoring
+    volumes:
+      - influxdb-volume:/var/lib/influxdb
+networks:
+  monitoring:
+    external: false
+volumes:
+  influxdb-volume:
+    external: false

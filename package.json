@@ -1,0 +1,25 @@
+{
+  "name": "eventprocessor",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint -c ../../../../.eslintrc.json .",
+    "npmlockrefresh": "npm i --package-lock-only",
+    "ci": "npm -s run lint",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@azure/event-hubs": "^2.1.0",
+    "azure-iot-device": "^1.17.1",
+    "azure-iot-digitaltwins-service": "1.0.0-pnp-refresh.3",
+    "circular-json": "^0.5.9",
+    "influx": "^5.6.3"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-google": "^0.13.0"
+  }
+}
