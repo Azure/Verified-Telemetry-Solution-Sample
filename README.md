@@ -1,4 +1,4 @@
-#Instructions to get Solution Template Running with Verified Telemetry Sample
+# Instructions to get Solution Template Running with Verified Telemetry Sample
 ## Setup Docker Desktop
 ## Edit [constants](./constants.js) file to set user defined values
 |Constant name|Value|
@@ -22,7 +22,7 @@ docker-compose up -d
 |`username` |admin|
 |`password` |admin|
 
-##View the Dashboard
+## View the Dashboard
 -  Search for "Verified Telemetry" Dashboard
 
 -  Select your device
