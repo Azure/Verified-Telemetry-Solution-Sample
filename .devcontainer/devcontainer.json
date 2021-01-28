@@ -2,13 +2,12 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.134.0/containers/javascript-node
 {
 	"name": "Node.js",
-	"build": {
-		"dockerfile": "Dockerfile",
-		// Update 'VARIANT' to pick a Node version: 10, 12, 14
-		"args": { "VARIANT": "12" }
-	},
 
-	"dockerComposeFile": "./docker-compose.yml",
+	"dockerComposeFile": "../docker-compose.yml",
+
+	"service": "web",
+
+	"workspaceFolder": "/home/app",
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": { 
@@ -17,7 +16,6 @@
 
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
-		"dbaeumer.vscode-eslint"
 	],
 	
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
