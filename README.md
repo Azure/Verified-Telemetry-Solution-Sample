@@ -21,13 +21,13 @@ docker-compose up -d
 > http://localhost:3030
 
 ![Login Page](./media/login.png)
-
+## Step 7: Enter following credentials
 |Credential|Default Value|
 |-------------|-----|
 |`username` |admin|
 |`password` |admin|
 
-## Step 7: View the Dashboard
+## Step 8: View the Dashboard
 -  Search for "Verified Telemetry" Dashboard
 
 -  Select your device
