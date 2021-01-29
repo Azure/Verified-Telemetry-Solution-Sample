@@ -1,57 +1,48 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 let influxwriter = require('./influxWriter');
-const fs = require('fs');
-var vTInfoInterfaceName = 'dtmi:azure:verifiedtelemetry:telemetryinfomation;1'
 var constants = require('./constants');
-var verifiedTelemetryData = {
-    verifiedTelemetries: {},
-};
+var digitalTwinLocalCopy;
 
-let verifiedTelemetryInit = function () {
-    let interfaceFile = fs.readFileSync(constants.interfaceFileName);
-    let interface = JSON.parse(interfaceFile);
-    interface.contents.forEach((component) => {
-        if(component.schema == vTInfoInterfaceName)
-        {
-            var verifiedTelemetryComponentName = component.name;
-            var verifiedTelemetryName = verifiedTelemetryComponentName.replace('vT', '');
-            verifiedTelemetryData.verifiedTelemetries[verifiedTelemetryName] = false;
-        }
-    });
-};
+let checkVerifiedTelemetrySupport = function (telemetryName) {
 
-let processVerifiedTelemetry = function (key, body, componentName) {
-
-    if (verifiedTelemetryData.verifiedTelemetries.hasOwnProperty(key))
+    var verifiedTelemetryComponentName = 'vT' + telemetryName; 
+    if(digitalTwinLocalCopy.hasOwnProperty(verifiedTelemetryComponentName))
     {
-        influxwriter.writeTelemetryToInfluxDB(key, body[key], constants.deviceId, componentName, verifiedTelemetryData.verifiedTelemetries[key].toString());
-        return true;
+        return(true);
     }
-    return false;
-    
-};
-
-async function processVerifiedTelemetryProperties(digitalTwin) {
-
-    for (var verifiedTelemetryName in verifiedTelemetryData.verifiedTelemetries) 
+    else
     {
-        var verifiedTelemetryComponentName = 'vT' + verifiedTelemetryName; 
-        console.log(verifiedTelemetryComponentName);
-        if(digitalTwin.hasOwnProperty(verifiedTelemetryComponentName))
-        {
-            verifiedTelemetryData.verifiedTelemetries[verifiedTelemetryName] = digitalTwin[verifiedTelemetryComponentName].telemetryStatus;
-            console.log(verifiedTelemetryName, 'Status : ',verifiedTelemetryData.verifiedTelemetries[verifiedTelemetryName]);
-        }
-    }
-    if(digitalTwin.hasOwnProperty('deviceStatus'))
-    {
-        influxwriter.writePropertyToInfluxDB('deviceStatus', digitalTwin.deviceStatus, constants.deviceId, 'root', digitalTwin.$metadata.deviceStatus.lastUpdateTime);
-    }
-    if(digitalTwin.hasOwnProperty('enableVerifiedTelemetry'))
-    {
-        influxwriter.writePropertyToInfluxDB('enableVerifiedTelemetry', digitalTwin.enableVerifiedTelemetry, constants.deviceId, 'root', digitalTwin.$metadata.enableVerifiedTelemetry.lastUpdateTime);
+        return(false);
     }
 };
 
-module.exports = { verifiedTelemetryInit: verifiedTelemetryInit, processVerifiedTelemetry: processVerifiedTelemetry, processVerifiedTelemetryProperties: processVerifiedTelemetryProperties}
+let getVerifiedTelemetryStatus = function (telemetryName) {
+
+    var verifiedTelemetryComponentName = 'vT' + telemetryName; 
+    if(digitalTwinLocalCopy.hasOwnProperty(verifiedTelemetryComponentName))
+    {
+        return(digitalTwinLocalCopy[verifiedTelemetryComponentName].telemetryStatus);
+    }
+    else
+    {
+        return(false);
+    }
+};
+
+async function processVerifiedTelemetryProperties(dtServiceclient) {
+
+    digitalTwinLocalCopy = await dtServiceclient.getDigitalTwin(constants.deviceId);
+
+    if(digitalTwinLocalCopy.hasOwnProperty('deviceStatus'))
+    {
+        influxwriter.writePropertyToInfluxDB('deviceStatus', digitalTwinLocalCopy.deviceStatus, constants.deviceId, 'root', digitalTwinLocalCopy.$metadata.deviceStatus.lastUpdateTime);
+    }
+
+    if(digitalTwinLocalCopy.hasOwnProperty('enableVerifiedTelemetry'))
+    {
+        influxwriter.writePropertyToInfluxDB('enableVerifiedTelemetry', digitalTwinLocalCopy.enableVerifiedTelemetry, constants.deviceId, 'root', digitalTwinLocalCopy.$metadata.enableVerifiedTelemetry.lastUpdateTime);
+    }
+};
+
+module.exports = { checkVerifiedTelemetrySupport: checkVerifiedTelemetrySupport, getVerifiedTelemetryStatus: getVerifiedTelemetryStatus, processVerifiedTelemetryProperties: processVerifiedTelemetryProperties}

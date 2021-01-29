@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1611002000938,
+  "iteration": 1611936526356,
   "links": [],
   "panels": [
     {
@@ -565,7 +565,7 @@
             },
             {
               "condition": "AND",
-              "key": "verifiedTelemetry",
+              "key": "verifiedTelemetryStatus",
               "operator": "=",
               "value": "true"
             }
@@ -626,7 +626,7 @@
             },
             {
               "condition": "AND",
-              "key": "verifiedTelemetry",
+              "key": "verifiedTelemetryStatus",
               "operator": "=",
               "value": "false"
             }
@@ -789,7 +789,7 @@
             },
             {
               "condition": "AND",
-              "key": "verifiedTelemetry",
+              "key": "verifiedTelemetryStatus",
               "operator": "=",
               "value": "true"
             }
@@ -850,7 +850,7 @@
             },
             {
               "condition": "AND",
-              "key": "verifiedTelemetry",
+              "key": "verifiedTelemetryStatus",
               "operator": "=",
               "value": "false"
             }
@@ -1138,6 +1138,7 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
+          "$$hashKey": "object:133",
           "alias": "Unverified",
           "color": "#FF9830",
           "dashes": true
@@ -1199,6 +1200,12 @@
               "key": "telemetry",
               "operator": "=",
               "value": "humidityPercentage"
+            },
+            {
+              "condition": "AND",
+              "key": "verifiedTelemetrySupport",
+              "operator": "=",
+              "value": "false"
             }
           ]
         }
@@ -1223,6 +1230,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:142",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1231,6 +1239,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:143",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1288,6 +1297,7 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
+          "$$hashKey": "object:278",
           "alias": "Unverified",
           "color": "#FF9830",
           "dashes": true
@@ -1349,6 +1359,12 @@
               "key": "telemetry",
               "operator": "=",
               "value": "magnetic"
+            },
+            {
+              "condition": "AND",
+              "key": "verifiedTelemetrySupport",
+              "operator": "=",
+              "value": "false"
             }
           ]
         }
@@ -1373,6 +1389,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:287",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1381,6 +1398,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:288",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1438,6 +1456,7 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
+          "$$hashKey": "object:423",
           "alias": "Unverified",
           "color": "#FF9830",
           "dashes": true
@@ -1499,6 +1518,12 @@
               "key": "telemetry",
               "operator": "=",
               "value": "pressure"
+            },
+            {
+              "condition": "AND",
+              "key": "verifiedTelemetrySupport",
+              "operator": "=",
+              "value": "false"
             }
           ]
         }
@@ -1523,6 +1548,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:432",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1531,6 +1557,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:433",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1588,6 +1615,7 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
+          "$$hashKey": "object:568",
           "alias": "Unverified",
           "color": "#FF9830",
           "dashes": true
@@ -1649,6 +1677,12 @@
               "key": "telemetry",
               "operator": "=",
               "value": "temperature"
+            },
+            {
+              "condition": "AND",
+              "key": "verifiedTelemetrySupport",
+              "operator": "=",
+              "value": "false"
             }
           ]
         }
@@ -1673,6 +1707,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:577",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1681,6 +1716,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:578",
           "format": "short",
           "label": null,
           "logBase": 1,
