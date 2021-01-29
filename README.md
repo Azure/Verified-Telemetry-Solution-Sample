@@ -1,5 +1,6 @@
 # Verified Telemetry Solution Sample
-- This guide showcases how the Verified Telemetry features can be utilised in real world scenarios.
+- This guide showcases how the Verified Telemetry features can be utilised in real world scenarios to ensure only accurate data is consumed by upstream processes
+![Dashboard](./media/VT_Usecase.png)
 
 # Steps to setup Solution Template
 ## Step 1: Run through one of the [device samples](https://github.com/Azure/Verified-Telemetry-Device-Sample) for [Verified Telemetry Library](https://github.com/Azure/Verified-Telemetry)
