@@ -1,4 +1,5 @@
 // Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 var constants = require('./constants');
 var http = require('http');
 let { inspect } = require('util');

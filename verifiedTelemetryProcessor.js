@@ -1,4 +1,5 @@
 // Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 let influxwriter = require('./influxWriter');
 const fs = require('fs');
 var vTInfoInterfaceName = 'dtmi:azure:verifiedtelemetry:telemetryinfomation;1'

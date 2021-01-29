@@ -1,4 +1,5 @@
 // Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 var { EventHubClient, EventPosition } = require('@azure/event-hubs');
 let IoTHubTokenCredentials = require('azure-iot-digitaltwins-service').IoTHubTokenCredentials;
 let DigitalTwinServiceClient = require('azure-iot-digitaltwins-service').DigitalTwinServiceClient;

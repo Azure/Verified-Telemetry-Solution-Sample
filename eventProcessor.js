@@ -1,4 +1,5 @@
 // Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 let influxwriter = require('./influxWriter');
 const { processVerifiedTelemetry } = require('./verifiedTelemetryProcessor');
 const constants = require('./constants');
