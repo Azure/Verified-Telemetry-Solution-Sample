@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 let influxwriter = require('./influxWriter');
-const { processVerifiedTelemetry } = require('./verifiedTelemetryProcessor');
+const { checkVerifiedTelemetrySupport, getVerifiedTelemetryStatus } = require('./verifiedTelemetryProcessor');
 const constants = require('./constants');
 
 let printError = function (err) {
@@ -23,10 +24,7 @@ let processMessage = function (message) {
         console.log("Received Telemetry for device:",constants.deviceId);
         for (const key of Object.keys(body))
         {
-            if(!processVerifiedTelemetry(key, body, componentName))
-            {
-                influxwriter.writeTelemetryToInfluxDB(key, body[key], deviceId,componentName, 'false');
-            }
+            influxwriter.writeTelemetryToInfluxDB(key, body[key], deviceId,componentName, checkVerifiedTelemetrySupport(key), getVerifiedTelemetryStatus(key));
         }
     }
     

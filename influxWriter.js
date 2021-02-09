@@ -1,4 +1,5 @@
 // Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 const Influx = require('influx');
 
 //So this is some generic influxDB schema for IoT Data.
@@ -16,7 +17,8 @@ const influx = new Influx.InfluxDB({
                 'telemetry',
                 'deviceId',
                 'componentName',
-                'verifiedTelemetry'
+                'verifiedTelemetrySupport',
+                'verifiedTelemetryStatus'
             ]
         },
         {
@@ -40,9 +42,10 @@ const influx = new Influx.InfluxDB({
  * @param {string} value  value of the json pair
  * @param {string} deviceId iothub deviceId
  * @param {string} componentName component name
+ * @param {string} verifiedTelemetrySupport verifiedTelemetrySupport
  * @param {string} verifiedTelemetryStatus verifiedTelemetryStatus
  */
-let writeTelemetryToInfluxDB = function (key, value, deviceId, componentName, verifiedTelemetryStatus) {
+let writeTelemetryToInfluxDB = function (key, value, deviceId, componentName, verifiedTelemetrySupport, verifiedTelemetryStatus) {
     let parsedNumber = 0;
     try {
         parsedNumber = parseFloat(value);
@@ -50,7 +53,7 @@ let writeTelemetryToInfluxDB = function (key, value, deviceId, componentName, ve
             {
                 measurement: 'telemetry_messages',
                 fields: { jsonvalue: value, jsonasnumber: parsedNumber  },
-                tags: { telemetry: key, deviceId: deviceId, componentName: componentName, verifiedTelemetry: verifiedTelemetryStatus},
+                tags: { telemetry: key, deviceId: deviceId, componentName: componentName, verifiedTelemetrySupport: verifiedTelemetrySupport, verifiedTelemetryStatus: verifiedTelemetryStatus},
             }]
         )
         
@@ -61,7 +64,7 @@ let writeTelemetryToInfluxDB = function (key, value, deviceId, componentName, ve
                 {
                     measurement: 'telemetry_messages',
                     fields: { jsonvalue: value },
-                    tags: { telemetry: key, deviceId: deviceId, componentName: componentName, verifiedTelemetry: verifiedTelemetryStatus}
+                    tags: { telemetry: key, deviceId: deviceId, componentName: componentName, verifiedTelemetrySupport: verifiedTelemetrySupport, verifiedTelemetryStatus: verifiedTelemetryStatus}
                 }
             ])
             // console.log('PARSING ERROR!, ','Telemetry with key: ', key, ', string Value: ', value, 'and vTStatus: ', verifiedTelemetryStatus, 'stored in DB');
