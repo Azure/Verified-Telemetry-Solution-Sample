@@ -1,9 +1,9 @@
 # Verified Telemetry Custom Solution Sample
 ## Table of Contents
-* [Verified Telemetry Overview](https://github.com/Azure/Verified-Telemetry-Solution-Sample/tree/main#verified-telemetry-overview)
-* [Steps to setup Custom Solution Template](https://github.com/Azure/Verified-Telemetry-Solution-Sample/tree/main#steps-to-setup-custom-solution-template)
-* [Steps to setup Verified Telemetry Configuration](https://github.com/Azure/Verified-Telemetry-Device-Sample/tree/main#verified-telemetry-concepts)
-* [Consuming Verified Telemetry Information](https://github.com/Azure/Verified-Telemetry-Device-Sample/tree/main#verified-telemetry-device-sample)
+* [Verified Telemetry Overview](https://github.com/Azure/Verified-Telemetry-Solution-Sample#verified-telemetry-overview)
+* [Steps to setup Custom Solution Template](https://github.com/Azure/Verified-Telemetry-Solution-Sample#steps-to-setup-custom-solution-template)
+* [Steps to setup Verified Telemetry Configuration](https://github.com/Azure/Verified-Telemetry-Solution-Sample#steps-to-setup-verified-telemetry-configuration)
+* [Consuming Verified Telemetry Information](https://github.com/Azure/Verified-Telemetry-Solution-Sample#consuming-verified-telemetry-information)
 
 ## Verified Telemetry Overview
 The quality of sensor data is fundamental for driving IoT adoption. Since IoT sensors are made of low-cost components, deployed in-the-wild and in harsh environments, they are prone to failures leading to faulty or dirty data. The effect of bad data will lead to the well-known garbage-in garbage-out process, leading to cascading ill-effects upstream and at times catastrophic decisions.
