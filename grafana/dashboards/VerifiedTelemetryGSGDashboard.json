@@ -929,7 +929,7 @@
           ],
           [
             "methodName",
-            "resetFingerprintTemplate"
+            "setResetFingerprintTemplate"
           ],
           [
             "type",
@@ -1019,7 +1019,7 @@
           ],
           [
             "methodName",
-            "resetFingerprintTemplate"
+            "setResetFingerprintTemplate"
           ],
           [
             "type",
