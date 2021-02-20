@@ -26,8 +26,9 @@ Verified Telemetry (VT) is a state-of-the-art solution to determine the health o
     * STMicroelectronics:
       * [B-L475E-IOT01A](STMicroelectronics/STM32L4_L4+)
       * [B-L4S5I-IOT01A](STMicroelectronics/STM32L4_L4+)
-  > Note:  Ensure your device is up and running before you proceed to the next step
-  > Note: Save the Device ID that you have configured
+  > NOTE:  Ensure your device is up and running before you proceed to the next step
+ 
+  > NOTE: Save the Device ID that you have configured
 
 ### Step 1: Setup Docker Desktop
 * Steps to install can be found [here](https://docs.docker.com/desktop/)
@@ -50,7 +51,7 @@ Verified Telemetry (VT) is a state-of-the-art solution to determine the health o
 ```shell
 docker-compose up -d
 ```
-
+  > NOTE: This step needs to be implemented everytime the configuration file is updated 
 ### Step 5: Open your browser and navigate to below URL
 > http://localhost:3030
 
