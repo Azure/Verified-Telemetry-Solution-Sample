@@ -90,15 +90,15 @@ There are two ways to utilize this status information in your existing custom so
     ![Message_Enrich_VT](./media/messageEnrichVT.png)
 
 ## Steps to setup Message Enrichment
-1. Go to your IoT hub by selecting **Resource groups**. Then select the resource group set up for during the Device Sample (**MyResourceGroup**). Find the IoT hub in the list, and select it. Select **Message routing** for the IoT hub.
+1. On [Azure Portal](https://ms.portal.azure.com) go to your IoT hub by selecting **Resource groups**. Then select the resource group set up for during the Device Sample (**MyResourceGroup**). Find the IoT hub in the list, and select it. Select **Message routing** for the IoT hub.
 
    ![Select message routing](./media/messageEnrichSetup.png)
 
-   The message routing pane has three tabs labeled **Routes**, **Custom endpoints**, and **Enrich messages**. Use the third tab to add message enrichments. Let's enrich messages going to the Built-in endpoint called **events**. Fill in the name and value, and then select the endpoint **events** from the drop-down list. Here's an example of how to set up an enrichment that adds the IoT hub name to the message:
+   The message routing pane has three tabs labeled **Routes**, **Custom endpoints**, and **Enrich messages**. Use the third tab to add message enrichments. Let's enrich messages going to the Built-in endpoint called **events**. Fill in the name and value, and then select the endpoint **events** from the drop-down list. Here's an example of how to set up an enrichment that adds the Verified Telemetry Device Status to the message:
 
    ![Add first enrichment](./media/messageEnrichVTSetup0.png)
 
-1. Add these values to the list for the ContosoStorageEndpointEnriched endpoint.
+1. Add these values to the list for the Built-in events endpoint.
 
    | Key | Value | Endpoint (drop-down list) |
    | ---- | ----- | -------------------------|
