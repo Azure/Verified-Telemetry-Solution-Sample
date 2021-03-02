@@ -4,7 +4,7 @@
 * [Fetching Verified Telemetry Status](https://github.com/Azure/Verified-Telemetry-Solution-Sample/blob/main/docs/customSolution.md#fetching-verified-telemetry-status)
 * [Query Digital Twin for Verified Telemetry](https://github.com/Azure/Verified-Telemetry-Solution-Sample/blob/main/docs/customSolution.md#query-digital-twin-for-verified-telemetry)
 * [Message Enrichment for Verified Telemetry](https://github.com/Azure/Verified-Telemetry-Solution-Sample/blob/main/docs/customSolution.md#message-enrichment-for-verified-telemetry)
-* [Steps to setup Message Enrichment](https://github.com/Azure/Verified-Telemetry-Solution-Sample/blob/main/docs/customSolution.md#steps-to-setup-message-enrichment)
+* [Steps to setup Message Enrichment for Verified Telemetry](https://github.com/Azure/Verified-Telemetry-Solution-Sample/blob/main/docs/customSolution.md#steps-to-setup-message-enrichment-for-verified-telemetry)
 * [Consuming Telemetry messages with Message Enrichment for Verified Telemetry](https://github.com/Azure/Verified-Telemetry-Solution-Sample/blob/main/docs/customSolution.md#consuming-telemetry-messages-with-message-enrichment-for-verified-telemetry)
 
 ## Data Paths
@@ -89,7 +89,7 @@ There are two ways to utilize this status information in your existing custom so
 * By adding message enrichment, the telemetry message itself can be appended with telemetry status as additional property, thus forming Verified Telemetry
     ![Message_Enrich_VT](./media/messageEnrichVT.png)
 
-## Steps to setup Message Enrichment
+## Steps to setup Message Enrichment for Verified Telemetry
 1. On [Azure Portal](https://ms.portal.azure.com) go to your IoT hub by selecting **Resource groups**. Then select the resource group set up for during the Device Sample (**MyResourceGroup**). Find the IoT hub in the list, and select it. Select **Message routing** for the IoT hub.
 
    ![Select message routing](./media/messageEnrichSetup.png)
