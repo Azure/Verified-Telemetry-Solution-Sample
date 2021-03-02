@@ -9,8 +9,10 @@ let printError = function (err) {
 };
 
 let processMessage = function (message) {
+    // console.log(message);
     let body = message.body;
     let additionalProperties = message.applicationProperties;
+    // console.log(additionalProperties);
     let deviceId = message.annotations["iothub-connection-device-id"];
     let componentName = ""
     try {
@@ -24,7 +26,7 @@ let processMessage = function (message) {
         console.log("Received Telemetry for device:",constants.deviceId);
         for (const key of Object.keys(body))
         {
-            influxwriter.writeTelemetryToInfluxDB(key, body[key], deviceId,componentName, checkVerifiedTelemetrySupport(key), getVerifiedTelemetryStatus(key));
+            influxwriter.writeTelemetryToInfluxDB(key, body[key], deviceId,componentName, checkVerifiedTelemetrySupport(key, additionalProperties), getVerifiedTelemetryStatus(key, additionalProperties));
         }
     }
     

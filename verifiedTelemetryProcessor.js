@@ -4,10 +4,10 @@ let influxwriter = require('./influxWriter');
 var constants = require('./constants');
 var digitalTwinLocalCopy;
 
-let checkVerifiedTelemetrySupport = function (telemetryName) {
+let checkVerifiedTelemetrySupport = function (telemetryName, additionalProperties) {
 
     var verifiedTelemetryComponentName = 'vT' + telemetryName; 
-    if(digitalTwinLocalCopy.hasOwnProperty(verifiedTelemetryComponentName))
+    if(additionalProperties.hasOwnProperty(verifiedTelemetryComponentName) || digitalTwinLocalCopy.hasOwnProperty(verifiedTelemetryComponentName))
     {
         return(true);
     }
@@ -17,11 +17,17 @@ let checkVerifiedTelemetrySupport = function (telemetryName) {
     }
 };
 
-let getVerifiedTelemetryStatus = function (telemetryName) {
+let getVerifiedTelemetryStatus = function (telemetryName, additionalProperties) {
 
     var verifiedTelemetryComponentName = 'vT' + telemetryName; 
-    if(digitalTwinLocalCopy.hasOwnProperty(verifiedTelemetryComponentName))
+    if(additionalProperties.hasOwnProperty(verifiedTelemetryComponentName))
     {
+        console.log("Verified Telemetry Status fetched from Enriched Telemetry Message");
+        return(additionalProperties[verifiedTelemetryComponentName])
+    }
+    else if(digitalTwinLocalCopy.hasOwnProperty(verifiedTelemetryComponentName))
+    {
+        console.log("Verified Telemetry Status fetched from Digital Twin");
         return(digitalTwinLocalCopy[verifiedTelemetryComponentName].telemetryStatus);
     }
     else
