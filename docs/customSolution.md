@@ -1,11 +1,11 @@
 # Fetching Verified Telemetry Information for your Custom Solution
 ## Table of Contents
-* [Data Paths](https://github.com/Azure/Verified-Telemetry-Device-Sample/tree/main#verified-telemetry-device-sample)
-* [Fetching Verified Telemetry Status](https://github.com/Azure/Verified-Telemetry-Device-Sample/tree/main#verified-telemetry-device-sample)
-* [Query Digital Twin for Verified Telemetry](https://github.com/Azure/Verified-Telemetry-Device-Sample/tree/main#verified-telemetry-device-sample)
-* [Message Enrichment for Verified Telemetry](https://github.com/Azure/Verified-Telemetry-Device-Sample/tree/main#verified-telemetry-device-sample)
-* [Steps to setup Message Enrichment](https://github.com/Azure/Verified-Telemetry-Device-Sample/tree/main#verified-telemetry-device-sample)
-* [Consuming Telemetry messages with Message Enrichment for Verified Telemetry](https://github.com/Azure/Verified-Telemetry-Device-Sample/tree/main#verified-telemetry-device-sample)
+* [Data Paths](https://github.com/Azure/Verified-Telemetry-Solution-Sample/blob/main/docs/customSolution.md#data-paths)
+* [Fetching Verified Telemetry Status](https://github.com/Azure/Verified-Telemetry-Solution-Sample/blob/main/docs/customSolution.md#fetching-verified-telemetry-status)
+* [Query Digital Twin for Verified Telemetry](https://github.com/Azure/Verified-Telemetry-Solution-Sample/blob/main/docs/customSolution.md#query-digital-twin-for-verified-telemetry)
+* [Message Enrichment for Verified Telemetry](https://github.com/Azure/Verified-Telemetry-Solution-Sample/blob/main/docs/customSolution.md#message-enrichment-for-verified-telemetry)
+* [Steps to setup Message Enrichment](https://github.com/Azure/Verified-Telemetry-Solution-Sample/blob/main/docs/customSolution.md#steps-to-setup-message-enrichment)
+* [Consuming Telemetry messages with Message Enrichment for Verified Telemetry](https://github.com/Azure/Verified-Telemetry-Solution-Sample/blob/main/docs/customSolution.md#consuming-telemetry-messages-with-message-enrichment-for-verified-telemetry)
 
 ## Data Paths
 ![Data_Paths](./media/HotvCold.png)
@@ -92,7 +92,7 @@ There are two ways to utilize this status information in your existing custom so
 ## Steps to setup Message Enrichment
 1. Go to your IoT hub by selecting **Resource groups**. Then select the resource group set up for during the Device Sample (**MyResourceGroup**). Find the IoT hub in the list, and select it. Select **Message routing** for the IoT hub.
 
-   ![Select message routing](./media/tutorial-message-enrichments/select-iot-hub.png)
+   ![Select message routing](./media/messageEnrichSetup.png)
 
    The message routing pane has three tabs labeled **Routes**, **Custom endpoints**, and **Enrich messages**. Use the third tab to add message enrichments. Let's enrich messages going to the Built-in endpoint called **events**. Fill in the name and value, and then select the endpoint **events** from the drop-down list. Here's an example of how to set up an enrichment that adds the IoT hub name to the message:
 
