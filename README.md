@@ -93,3 +93,8 @@ docker-compose up -d
    
     ![Fault in telemetry soilMoistureExternal](media/Grafana-fault.png)
 
+## Next Steps
+* With this sample, you have now setup a Verified Telemetry Custom Solution Sample and interacted with a Verified Telemetry Device Sample
+* To understand how to modify your existing IoT solution to utilize Verified Telemetry Information, refer to the following documentation - 
+    * [Fetching Verified Telemetry Information for your Custom Solution](https://github.com/Azure/Verified-Telemetry-Solution-Sample/blob/main/docs/customSolution.md) 
+* For steps to include Verified Telemetry in your existing solution, refer to documentation in the [Verified Telemetry Library](https://github.com/Azure/Verified-Telemetry)
