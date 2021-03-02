@@ -120,6 +120,27 @@ There are two ways to utilize this status information in your existing custom so
 
 ## Consuming Telemetry messages with Message Enrichment for Verified Telemetry
 
+* Here is how a Telemetry message looks after the message enrichments have been added
+    ``` output
+    {
+        "body": {
+            "soilMoistureExternal": 546,
+            "accelerometerXExternal": 2774,
+            "temperature": 32.11,
+            "pressure": 952.58,
+            "humidityPercentage": 51.77,
+            "acceleration": -44.1,
+            "magnetic": 597
+        },
+        "enqueuedTime": "2021-03-02T21:33:38.377Z",
+        "properties": {
+            "verifiedTelemetryDeviceStatus": "true",
+            "vTaccelerometerXExternal": "true",
+            "vTsoilMoistureExternal": "true"
+        }
+    }
+    ```
+
 * Here is an example of a JS function which can extract the Telemetry Status from the telemetry message
     ```js
     let getVerifiedTelemetryStatus = function (telemetryName, additionalProperties) {
