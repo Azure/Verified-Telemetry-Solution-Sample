@@ -40,14 +40,14 @@ async function processVerifiedTelemetryProperties(dtServiceclient) {
 
     digitalTwinLocalCopy = await dtServiceclient.getDigitalTwin(constants.deviceId);
 
-    if(digitalTwinLocalCopy.hasOwnProperty('deviceStatus'))
+    if(digitalTwinLocalCopy.hasOwnProperty('vTDevice'))
     {
-        influxwriter.writePropertyToInfluxDB('deviceStatus', digitalTwinLocalCopy.deviceStatus, constants.deviceId, 'root', digitalTwinLocalCopy.$metadata.deviceStatus.lastUpdateTime);
+        influxwriter.writePropertyToInfluxDB('deviceStatus', digitalTwinLocalCopy.vTDevice.deviceStatus, constants.deviceId, 'vTDevice', digitalTwinLocalCopy.vTDevice.$metadata.deviceStatus.lastUpdateTime);
     }
 
-    if(digitalTwinLocalCopy.hasOwnProperty('enableVerifiedTelemetry'))
+    if(digitalTwinLocalCopy.hasOwnProperty('vTDevice'))
     {
-        influxwriter.writePropertyToInfluxDB('enableVerifiedTelemetry', digitalTwinLocalCopy.enableVerifiedTelemetry, constants.deviceId, 'root', digitalTwinLocalCopy.$metadata.enableVerifiedTelemetry.lastUpdateTime);
+        influxwriter.writePropertyToInfluxDB('enableVerifiedTelemetry', digitalTwinLocalCopy.vTDevice.enableVerifiedTelemetry, constants.deviceId, 'vTDevice', digitalTwinLocalCopy.vTDevice.$metadata.enableVerifiedTelemetry.lastUpdateTime);
     }
 };
 

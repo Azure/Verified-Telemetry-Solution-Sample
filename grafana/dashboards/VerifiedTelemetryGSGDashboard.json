@@ -124,7 +124,7 @@
           "measurement": "property_messages",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT \"jsonvalue\" FROM \"property_messages\" WHERE (\"property\" = 'deviceStatus')",
+          "query": "SELECT \"jsonvalue\" FROM \"property_messages\" WHERE (\"deviceId\" =~ /^$DeviceName$/ AND \"componentName\" = 'vTDevice' AND \"property\" = 'deviceStatus')",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -177,7 +177,7 @@
         "params": [
           [
             "componentName",
-            "Root"
+            "vTDevice"
           ],
           [
             "methodName",
@@ -323,7 +323,7 @@
           "measurement": "property_messages",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT \"jsonvalue\" FROM \"property_messages\" WHERE (\"deviceId\" =~ /^$DeviceName$/ AND \"property\" = 'enableVerifiedTelemetry') ",
+          "query": "SELECT \"jsonvalue\" FROM \"property_messages\" WHERE (\"deviceId\" =~ /^$DeviceName$/ AND \"componentName\" = 'vTDevice' AND \"property\" = 'enableVerifiedTelemetry') ",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -382,7 +382,7 @@
         "params": [
           [
             "componentName",
-            "Root"
+            "vTDevice"
           ],
           [
             "methodName",
