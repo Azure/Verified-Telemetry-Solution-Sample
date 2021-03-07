@@ -34,7 +34,7 @@ services:
       INFLUXDB_ADMIN_PASSWORD: supersecretpassword
       INFLUXDB_USER: telegraf
       INFLUXDB_USER_PASSWORD: secretpassword
-    image: influxdb
+    image: influxdb:1.8
     container_name: influxdb
     restart: always
     ports:
