@@ -30,16 +30,25 @@ Verified Telemetry (VT) is a state-of-the-art solution to determine the health o
  
   > NOTE: Save the Device ID that you have configured
 
-### Step 1: Setup Docker Desktop
+### Step 1: Clone the repository
+To clone the repo, run the following command:
+
+```shell
+git clone --recursive https://github.com/Azure/Verified-Telemetry-Solution-Sample.git
+```
+### Step 2: Setup Docker Desktop
 * Steps to install can be found [here](https://docs.docker.com/desktop/)
-### Step 2: Get IoT Hub Connection String
+* Ensure Docker Desktop is up and running
+### Step 3: Get IoT Hub Connection String
 * In your CLI console, run the [az iot hub show-connection-string](https://docs.microsoft.com/en-us/cli/azure/iot/hub?view=azure-cli-latest#az-iot-hub-show-connection-string) command to get the connection string for your IoT hub.
 
     ```shell
     az iot hub show-connection-string --name {YourIoTHubName}
     ```
-### Step 3: Modify configuration file for Azure IoT settings
-* Open [configuration](./constants.js) file 
+### Step 4: Modify configuration file for Azure IoT settings
+* Open the following file in a text editor:
+
+    > *Verified-Telemetry-Solution-Sample\constants.js*
 * Set the Azure IoT device information constants
   |Constant name|Value|
   |-------------|-----|
@@ -47,11 +56,14 @@ Verified Telemetry (VT) is a state-of-the-art solution to determine the health o
   |`deviceId` |{*Your device ID*}|
   > NOTE: Make sure that you provide the IoT Hub connection string and not the device connection string
 ### Step 4: Run the Docker application
-
+* Navigate to the root folder of the repository *\Verified-Telemetry-Solution-Sample*
+* Run the following command
 ```shell
 docker-compose up -d
 ```
-  > NOTE: This step needs to be implemented everytime the configuration file is updated 
+  > NOTE: Ensure you accept the grafana folder access request 
+
+  > NOTE: In case of updates to configuration file, issue the command - *docker-compose up --build -d*
 ### Step 5: Open your browser and navigate to below URL
 > http://localhost:3030
 
@@ -63,7 +75,8 @@ docker-compose up -d
 |`password` |admin|
 
 ### Step 7: View the Dashboard
--  Search for "Verified Telemetry" Dashboard
+-  Navigate to Search -> Verified Telemetry Dashboard
+  ![Search and Select Dashboard ](./media/dashboard_search_select.png)
 
 -  Select your device
 
@@ -74,24 +87,43 @@ docker-compose up -d
 
     ![Setting enableVerifiedTelemetry true ](./media/dashboard_enable.png)
 
-### Collect Fingerprint Template for Accelerometer telemetry 
-* Issue command `Set/Reset Fingerprint Template` for setting up Verified Telemetry for the 'Accelerometer'telemetry
 
-    ![Issue command to setup VT for telemetry accelerometerXExternal](./media/dashboard_reset-1.png)
+### Collect Fingerprint Template for Soil Moisture 1 telemetry 
+* Issue command `Set/Reset Fingerprint Template` for setting up Verified Telemetry for the 'Soil Moisture 1' telemetry
 
-### Collect Fingerprint Template for Soil Moisture telemetry 
-* Issue command `Set/Reset Fingerprint Template` for setting up Verified Telemetry for the 'Soil Moisture' telemetry
+    ![Issue command to setup VT for telemetry soilMoistureExternal1 ](./media/dashboard_reset-1.png)
 
-    ![Issue command to setup VT for telemetry soilMoistureExternal ](./media/dashboard_reset-2.png)
+
+### Collect Fingerprint Template for Soil Moisture 2 telemetry 
+* Issue command `Set/Reset Fingerprint Template` for setting up Verified Telemetry for the 'Soil Moisture 2'telemetry
+
+    ![Issue command to setup VT for telemetry soilMoistureExternal2](./media/dashboard_reset-2.png)
 
 ## Consuming Verified Telemetry Information  
-* The property `Device Status` indicates that all the telemetries supported by Verified Telemetry are verified and the telemetry color GREEN indicates that both Accelerometer and Soil Moisture telemetries are verified. 
+* The property `Device Status` indicates that all the telemetries supported by Verified Telemetry are verified and the telemetry color GREEN indicates that both Soil Moisture 2 and Soil Moisture 1 telemetries are verified. 
 
     ![Checking deviceStatus ](media/Grafana-working.png)
 
-* In case of fault with the Soil Moisture sensor, the color of Soil Moisture telemetry changes to RED, indicating that the Soil Moisture telemetry has a FAULT and should not be consumed by upstream processes. The 'Device Status' also changes to "Fault in 1+ Telemetries "
+* In case of fault with the Soil Moisture 2 sensor, the color of Soil Moisture 2 telemetry changes to RED, indicating that the Soil Moisture 2 telemetry has a FAULT and should not be consumed by upstream processes. The 'Device Status' also changes to "Fault in 1+ Telemetries "
+    > NOTE: To simulate a faulty sensor, just disconnect Soil Moisture Sensor 2 which would create an Open Port fault!
    
-    ![Fault in telemetry soilMoistureExternal](media/Grafana-fault.png)
+    ![Fault in telemetry soilMoistureExternal2](media/Grafana-fault.png)
+
+
+## FAQ
+* Q: What happens if the device reboots after collection of Fingerprint Template?
+    * A: Our library stores the Verified Telemetry Fingerprint Templates in the Digital Twin. By fetching the Digital Twin after reboot, the device goes back to its original state that it was in before reboot
+    * The image below showcases the three states the device goes through:
+      1. State 1: Before Reboot
+      2. State 2: After Reboot, BEFORE Digital Twin sync
+      2. State 3: After Reboot, AFTER Digital Twin sync
+    ![Device Reboot](media/Grafana-reboot.png)
+* Q: What happens if Verified Telmetry is disabled by the property *enableVerifiedTelemetry* ?
+    * A: The telemetry status of all telemetries supported by Verified Telemetry go to *false*, indicating that the telemetries are not Verified.
+    ![VT Disabled](media/Grafana-disable.png) 
+* Q: Does the solution sample display Telemetries which are not supported by Verified Telemetry feature?
+    * A: Yes! You can scroll down to see the telemetries which are not supported by VT in the device samples. These telemetries can be identified by a lack of 'vT' + 'Telemetry Name' component in the Digital Twin.
+    ![Unsupported Telmetries](media/Grafana-unverified.png)  
 
 ## Next Steps
 * With this sample, you have now setup a Verified Telemetry Custom Solution Sample and interacted with a Verified Telemetry Device Sample

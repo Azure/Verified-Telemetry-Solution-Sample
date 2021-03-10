@@ -9,8 +9,8 @@ services:
       - influxdb
     ports:
       - 8080:8080
-    networks:
-      - monitoring
+    # networks:
+    #   - monitoring
     links:
       - influxdb
   grafana:
@@ -19,8 +19,8 @@ services:
     restart: always
     ports:
       - 3030:3030
-    networks:
-      - monitoring
+    # networks:
+    #   - monitoring
     volumes:
       - ./grafana:/etc/grafana/provisioning/
     environment:
@@ -39,13 +39,13 @@ services:
     restart: always
     ports:
       - 8086:8086
-    networks:
-      - monitoring
+    # networks:
+    #   - monitoring
     volumes:
       - influxdb-volume:/var/lib/influxdb
-networks:
-  monitoring:
-    external: false
+# networks:
+  # monitoring:
+  #   external: false
 volumes:
   influxdb-volume:
     external: false

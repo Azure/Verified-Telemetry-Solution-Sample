@@ -103,8 +103,8 @@ There are two ways to utilize this status information in your existing custom so
    | Key | Value | Endpoint (drop-down list) |
    | ---- | ----- | -------------------------|
    | verifiedTelemetryDeviceStatus | $twin.properties.reported.deviceStatus | Built-in endpoints > events |
-   | vTaccelerometerXExternal | $twin.properties.reported.vTaccelerometerXExternal.telemetryStatus | Built-in endpoints > events |
-   |vTsoilMoistureExternal | $twin.properties.reported.vTsoilMoistureExternal.telemetryStatus | Built-in endpoints > eventsd |
+   | vTsoilMoistureExternal2 | $twin.properties.reported.vTsoilMoistureExternal2.telemetryStatus | Built-in endpoints > events |
+   |vTsoilMoistureExternal1 | $twin.properties.reported.vTsoilMoistureExternal1.telemetryStatus | Built-in endpoints > eventsd |
 
    > NOTE
    >
@@ -124,8 +124,8 @@ There are two ways to utilize this status information in your existing custom so
     ``` output
     {
         "body": {
-            "soilMoistureExternal": 546,
-            "accelerometerXExternal": 2774,
+            "soilMoistureExternal1": 546,
+            "soilMoistureExternal2": 2774,
             "temperature": 32.11,
             "pressure": 952.58,
             "humidityPercentage": 51.77,
@@ -135,8 +135,8 @@ There are two ways to utilize this status information in your existing custom so
         "enqueuedTime": "2021-03-02T21:33:38.377Z",
         "properties": {
             "verifiedTelemetryDeviceStatus": "true",
-            "vTaccelerometerXExternal": "true",
-            "vTsoilMoistureExternal": "true"
+            "vTsoilMoistureExternal2": "true",
+            "vTsoilMoistureExternal1": "true"
         }
     }
     ```

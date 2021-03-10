@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1611936526356,
+  "iteration": 1615370345368,
   "links": [],
   "panels": [
     {
@@ -115,9 +115,10 @@
           "fields": "",
           "values": false
         },
+        "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.2",
+      "pluginVersion": "7.4.3",
       "targets": [
         {
           "groupBy": [],
@@ -314,9 +315,10 @@
           "fields": "",
           "values": false
         },
+        "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.2",
+      "pluginVersion": "7.4.3",
       "targets": [
         {
           "groupBy": [],
@@ -473,230 +475,6 @@
         "y": 5
       },
       "hiddenSeries": false,
-      "id": 76,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": false,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "7.3.2",
-      "pointradius": 8,
-      "points": true,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "$$hashKey": "object:221",
-          "alias": "Working",
-          "dashes": true
-        },
-        {
-          "$$hashKey": "object:306",
-          "alias": "Fault",
-          "color": "#F2495C"
-        }
-      ],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "Working",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "telemetry_messages",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "jsonasnumber"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "distinct"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "deviceId",
-              "operator": "=~",
-              "value": "/^$DeviceName$/"
-            },
-            {
-              "condition": "AND",
-              "key": "componentName",
-              "operator": "=",
-              "value": "sampleDevice"
-            },
-            {
-              "condition": "AND",
-              "key": "telemetry",
-              "operator": "=",
-              "value": "accelerometerXExternal"
-            },
-            {
-              "condition": "AND",
-              "key": "verifiedTelemetryStatus",
-              "operator": "=",
-              "value": "true"
-            }
-          ]
-        },
-        {
-          "alias": "Fault",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "telemetry_messages",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "jsonasnumber"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "distinct"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "deviceId",
-              "operator": "=~",
-              "value": "/^$DeviceName$/"
-            },
-            {
-              "condition": "AND",
-              "key": "componentName",
-              "operator": "=",
-              "value": "sampleDevice"
-            },
-            {
-              "condition": "AND",
-              "key": "telemetry",
-              "operator": "=",
-              "value": "accelerometerXExternal"
-            },
-            {
-              "condition": "AND",
-              "key": "verifiedTelemetryStatus",
-              "operator": "=",
-              "value": "false"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Accelerometer",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:228",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:229",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 5
-      },
-      "hiddenSeries": false,
       "id": 77,
       "legend": {
         "avg": false,
@@ -714,7 +492,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.2",
+      "pluginVersion": "7.4.3",
       "pointradius": 8,
       "points": true,
       "renderer": "flot",
@@ -785,7 +563,7 @@
               "condition": "AND",
               "key": "telemetry",
               "operator": "=",
-              "value": "soilMoistureExternal"
+              "value": "soilMoistureExternal1"
             },
             {
               "condition": "AND",
@@ -846,7 +624,7 @@
               "condition": "AND",
               "key": "telemetry",
               "operator": "=",
-              "value": "soilMoistureExternal"
+              "value": "soilMoistureExternal1"
             },
             {
               "condition": "AND",
@@ -861,7 +639,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Soil Moisture",
+      "title": "Soil Moisture 1",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -901,6 +679,230 @@
       }
     },
     {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 5
+      },
+      "hiddenSeries": false,
+      "id": 76,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.4.3",
+      "pointradius": 8,
+      "points": true,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "$$hashKey": "object:221",
+          "alias": "Working",
+          "dashes": true
+        },
+        {
+          "$$hashKey": "object:306",
+          "alias": "Fault",
+          "color": "#F2495C"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "Working",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "telemetry_messages",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "jsonasnumber"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "distinct"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "deviceId",
+              "operator": "=~",
+              "value": "/^$DeviceName$/"
+            },
+            {
+              "condition": "AND",
+              "key": "componentName",
+              "operator": "=",
+              "value": "sampleDevice"
+            },
+            {
+              "condition": "AND",
+              "key": "telemetry",
+              "operator": "=",
+              "value": "soilMoistureExternal2"
+            },
+            {
+              "condition": "AND",
+              "key": "verifiedTelemetryStatus",
+              "operator": "=",
+              "value": "true"
+            }
+          ]
+        },
+        {
+          "alias": "Fault",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "telemetry_messages",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "jsonasnumber"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "distinct"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "deviceId",
+              "operator": "=~",
+              "value": "/^$DeviceName$/"
+            },
+            {
+              "condition": "AND",
+              "key": "componentName",
+              "operator": "=",
+              "value": "sampleDevice"
+            },
+            {
+              "condition": "AND",
+              "key": "telemetry",
+              "operator": "=",
+              "value": "soilMoistureExternal2"
+            },
+            {
+              "condition": "AND",
+              "key": "verifiedTelemetryStatus",
+              "operator": "=",
+              "value": "false"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Soil Moisture 2",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:228",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:229",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
       "datasource": "InfluxDB",
       "fieldConfig": {
         "defaults": {
@@ -914,7 +916,7 @@
         "x": 3,
         "y": 13
       },
-      "id": 30,
+      "id": 80,
       "options": {
         "newParamName": "",
         "newParamValue": "",
@@ -925,7 +927,7 @@
         "params": [
           [
             "componentName",
-            "vTaccelerometerXExternal"
+            "vTsoilMoistureExternal1"
           ],
           [
             "methodName",
@@ -1004,7 +1006,7 @@
         "x": 15,
         "y": 13
       },
-      "id": 80,
+      "id": 30,
       "options": {
         "newParamName": "",
         "newParamValue": "",
@@ -1015,7 +1017,7 @@
         "params": [
           [
             "componentName",
-            "vTsoilMoistureExternal"
+            "vTsoilMoistureExternal2"
           ],
           [
             "methodName",
@@ -1132,7 +1134,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.2",
+      "pluginVersion": "7.4.3",
       "pointradius": 8,
       "points": true,
       "renderer": "flot",
@@ -1291,7 +1293,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.2",
+      "pluginVersion": "7.4.3",
       "pointradius": 8,
       "points": true,
       "renderer": "flot",
@@ -1450,7 +1452,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.2",
+      "pluginVersion": "7.4.3",
       "pointradius": 8,
       "points": true,
       "renderer": "flot",
@@ -1609,7 +1611,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.2",
+      "pluginVersion": "7.4.3",
       "pointradius": 8,
       "points": true,
       "renderer": "flot",
@@ -1732,7 +1734,7 @@
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 26,
+  "schemaVersion": 27,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -1746,6 +1748,7 @@
         },
         "datasource": "InfluxDB",
         "definition": "",
+        "description": null,
         "error": null,
         "hide": 0,
         "includeAll": false,
