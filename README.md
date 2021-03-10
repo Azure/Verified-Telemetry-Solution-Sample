@@ -56,14 +56,23 @@ git clone --recursive https://github.com/Azure/Verified-Telemetry-Solution-Sampl
   |`deviceId` |{*Your device ID*}|
   > NOTE: Make sure that you provide the IoT Hub connection string and not the device connection string
 ### Step 4: Run the Docker application
-* Navigate to the root folder of the repository *\Verified-Telemetry-Solution-Sample*
-* Run the following command
-```shell
-docker-compose up -d
-```
-  > NOTE: Ensure you accept the grafana folder access request 
+  * Install [VS Code](https://code.visualstudio.com/download)
+  * Open the Extensions view (Ctrl+Shift+X), search for docker to filter results and select Docker extension authored by Microsoft.
+    ![Docker Extension](./media/docker-extension.png)
+  * Open the folder (Ctrl+K+O) *Verified-Telemetry-Solution-Sample* in VS Code
+  * Open Explorer View (Ctrl+Shift+E), Right click on file docker-compose.yml and select *Compose Up*
+    
+    ![Docker Compose](./media/docker-compose.png)
+  * Ensure notifications on your PC are ON, and accept the file sharing request which you will get while docker creates your application
 
-  > NOTE: In case of updates to configuration file, issue the command - *docker-compose up --build -d*
+    ![Docker File Access](./media/docker-fileaccess.png)
+  * In case you update your constants.js file later, Right click on file docker-compose.yml and select *Compose Restart* 
+
+  > NOTE: If you do not want to use VS code and the docker extension, you can run the following command in the root folder
+
+  ```shell
+  docker-compose up -d
+  ```
 ### Step 5: Open your browser and navigate to below URL
 > http://localhost:3030
 
@@ -127,6 +136,4 @@ docker-compose up -d
 
 ## Next Steps
 * With this sample, you have now setup a Verified Telemetry Custom Solution Sample and interacted with a Verified Telemetry Device Sample
-* To understand how to modify your existing IoT solution to utilize Verified Telemetry Information, refer to the following documentation - 
-    * [Fetching Verified Telemetry Information for your Custom Solution](https://github.com/Azure/Verified-Telemetry-Solution-Sample/blob/main/docs/customSolution.md) 
 * For steps to include Verified Telemetry in your existing solution, refer to documentation in the [Verified Telemetry Library](https://github.com/Azure/Verified-Telemetry)
