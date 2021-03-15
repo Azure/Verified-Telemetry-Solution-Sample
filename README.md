@@ -141,6 +141,9 @@ You can skip the password reset and proceed forward.
 
 * To test the sensors attached are working as expected, hold the mositure sensor in your palm, since these are capacitive sensors, the Soil Moisture values should decrease as shown below.
 
+    ![Soil Moisture in Hand GIF](media/sensor-palm.gif)
+    ![Soil Moisture in Hand Data](media/Grafana-holdhand.png)
+
 * `Simulate a fauty sensor:` To simulate a faulty sensor, just disconnect Ground Pin (GND) on the Soil Moisture Sensor 2 which would create an Open Port fault!
 
     * We can see that the telemetry data still shows some data, which is typically garbage/dirty. Detecting such data as garbage/faulty is non-trivial and VT automatically detects the faulty sensor and changes the telemetry color to *RED*
