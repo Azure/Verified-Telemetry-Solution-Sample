@@ -117,7 +117,7 @@ You can skip the password reset and proceed forward.
 * In order to get VT status for Soil Mositrue 1 telemetry, we should collect a fingerprint template (ideally once).
 * To collect the fingerprint template for the attached sensor 'Soil Moisture 1' telemetry, issue command `Set/Reset Fingerprint Template`
 
-> Note if the fingerprint template is not set for a device, VT status cannot be obtained and will result in telemetry data shown in *red*
+  > Note: If the fingerprint template is not set for a device, VT status cannot be obtained and will result in telemetry data shown in *red*
 
     ![Issue command to setup VT for telemetry soilMoistureExternal1 ](./media/dashboard_reset-1.png)
 
@@ -126,7 +126,7 @@ You can skip the password reset and proceed forward.
 * In order to get VT status for Soil Mositrue 2 telemetry, we should collect a fingerprint template (ideally once).
 * To collect the fingerprint template for the attached sensor 'Soil Moisture 2' telemetry, issue command `Set/Reset Fingerprint Template`
 
-> Note if the fingerprint template is not set for a sensor, VT status cannot be obtained and will result in telemetry data shown in *RED*
+  > Note: If the fingerprint template is not set for a sensor, VT status cannot be obtained and will result in telemetry data shown in *RED*
 
     ![Issue command to setup VT for telemetry soilMoistureExternal2](./media/dashboard_reset-2.png)
 
@@ -142,11 +142,11 @@ You can skip the password reset and proceed forward.
 
 * `Simulate a fauty sensor:` To simulate a faulty sensor, just disconnect Ground Pin (GND) on the Soil Moisture Sensor 2 which would create an Open Port fault!
 
-> We can see that the telemetry data still shows some data, which is typically garbage/dirty. Detecting such data as garbage/faulty is non-trivial and VT automatically detects the faulty sensor and changes the telemetry color to *RED*
+    * We can see that the telemetry data still shows some data, which is typically garbage/dirty. Detecting such data as garbage/faulty is non-trivial and VT automatically detects the faulty sensor and changes the telemetry color to *RED*
    
     ![Fault in telemetry soilMoistureExternal2](media/Grafana-fault.png)
 
-* You can now connect back the Ground Pin to the sensor and see that telemetry color of 'Soil Moisture 2' sensor turning to *GREEN* immediately. 
+    * You can now connect back the Ground Pin to the sensor and see that telemetry color of 'Soil Moisture 2' sensor turning to *GREEN* immediately. 
 
 ## FAQ
 * Q: What happens if the device reboots after collection of Fingerprint Template?
@@ -156,7 +156,8 @@ You can skip the password reset and proceed forward.
       1. State 1: Before Reboot
       2. State 2: After Reboot, BEFORE Digital Twin sync (since no template is found, telemtry status is unknown and shown in RED) 
       2. State 3: After Reboot, AFTER Digital Twin sync (template is synced and telemtry status is verified and shown in GREEN)
-    ![Device Reboot](media/Grafana-reboot.png)
+
+      ![Device Reboot](media/Grafana-reboot.png)
 * Q: What happens if Verified Telmetry is disabled by the property *enableVerifiedTelemetry* ?
     * A: The telemetry status of all telemetries supported by Verified Telemetry go to *false*, indicating that the telemetries are not Verified.
     ![VT Disabled](media/Grafana-disable.png) 
