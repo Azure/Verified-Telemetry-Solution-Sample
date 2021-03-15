@@ -44,9 +44,9 @@ To clone the repo, run the following command:
 git clone --recursive https://github.com/Azure/Verified-Telemetry-Solution-Sample.git
 ```
 ### Step 2: Setup Docker Desktop
-* Steps to install can be found [here](https://docs.docker.com/desktop/)
+* Steps to install Docker locally can be found [here](https://docs.docker.com/desktop/)
 * If you run into issues, please see [Docker Troubleshooting page](https://docs.docker.com/docker-for-windows/troubleshoot/) for more details
-* Ensure Docker Desktop is up and running
+* Ensure Docker Desktop is up and running (click the system tray icon on the task bar to see the docker status)
 
 ### Step 3: Get IoT Hub Connection String
 * In your CLI console, run the [az iot hub show-connection-string](https://docs.microsoft.com/en-us/cli/azure/iot/hub?view=azure-cli-latest#az-iot-hub-show-connection-string) command to get the connection string for your IoT hub.
@@ -107,41 +107,55 @@ You can skip the password reset and proceed forward.
 
 ## Steps to setup Verified Telemetry Configuration
 ### Enable Verified Telemetry
-* By default, Verified Telemetry is enabled and this status is shown on the right-hand side of the dashboard as seen in the image below.
-* If the status is disabled, Please click the *Enable* to turn ON Verified Telemetry. 
+* By default, Verified Telemetry is enabled and the status is shown on the right-hand side of the dashboard as seen in the image below.
+* If the status is disabled, Please click the `Enable` button to turn ON Verified Telemetry. 
 
     ![Setting enableVerifiedTelemetry true ](./media/dashboard_enable.png)
 
 
 ### Collect Fingerprint Template for Soil Moisture 1 telemetry 
-* Issue command `Set/Reset Fingerprint Template` for setting up Verified Telemetry for the 'Soil Moisture 1' telemetry
+* In order to get VT status for Soil Mositrue 1 telemetry, we should collect a fingerprint template (ideally once).
+* To collect the fingerprint template for the attached sensor 'Soil Moisture 1' telemetry, issue command `Set/Reset Fingerprint Template`
+
+> Note if the fingerprint template is not set for a device, VT status cannot be obtained and will result in telemetry data shown in *red*
 
     ![Issue command to setup VT for telemetry soilMoistureExternal1 ](./media/dashboard_reset-1.png)
 
 
 ### Collect Fingerprint Template for Soil Moisture 2 telemetry 
-* Issue command `Set/Reset Fingerprint Template` for setting up Verified Telemetry for the 'Soil Moisture 2'telemetry
+* In order to get VT status for Soil Mositrue 2 telemetry, we should collect a fingerprint template (ideally once).
+* To collect the fingerprint template for the attached sensor 'Soil Moisture 2' telemetry, issue command `Set/Reset Fingerprint Template`
+
+> Note if the fingerprint template is not set for a sensor, VT status cannot be obtained and will result in telemetry data shown in *RED*
 
     ![Issue command to setup VT for telemetry soilMoistureExternal2](./media/dashboard_reset-2.png)
 
 ## Consuming Verified Telemetry Information  
-* The property `Device Status` indicates that all the telemetries supported by Verified Telemetry are verified and the telemetry color GREEN indicates that both Soil Moisture 2 and Soil Moisture 1 telemetries are verified. 
+* Now that for both the sensors working fingerprint template is collected, we can now see both the device status and telemetry status. 
+* The property `Device Status` indicates that all the telemetries supported by Verified Telemetry (i.e., Soil Moisture 1 and 2) are verified and the telemetry color *GREEN* indicates that both Soil Moisture 1 and Soil Moisture 2 telemetries are verified. 
 
     ![Checking deviceStatus ](media/Grafana-working.png)
 
-* In case of fault with the Soil Moisture 2 sensor, the color of Soil Moisture 2 telemetry changes to RED, indicating that the Soil Moisture 2 telemetry has a FAULT and should not be consumed by upstream processes. The 'Device Status' also changes to "Fault in 1+ Telemetries "
-    > NOTE: To simulate a faulty sensor, just disconnect Soil Moisture Sensor 2 which would create an Open Port fault!
+* In case of a fault with the Soil Moisture sensor (e.g., Soil Moisture 2), the color of Soil Moisture 2 telemetry changes to RED, indicating that the Soil Moisture 2 telemetry has a FAULT and should not be consumed by upstream processes. The 'Device Status' also changes to "Fault in 1+ Telemetries "
+
+* To test the sensors attached are working as expected, hold the mositure sensor in your palm, since these are capacitive sensors, the Soil Moisture values should decrease as shown below.
+
+* `Simulate a fauty sensor:` To simulate a faulty sensor, just disconnect Ground Pin (GND) on the Soil Moisture Sensor 2 which would create an Open Port fault!
+
+> We can see that the telemetry data still shows some data, which is typically garbage/dirty. Detecting such data as garbage/faulty is non-trivial and VT automatically detects the faulty sensor and changes the telemetry color to *RED*
    
     ![Fault in telemetry soilMoistureExternal2](media/Grafana-fault.png)
 
+* You can now connect back the Ground Pin to the sensor and see that telemetry color of 'Soil Moisture 2' sensor turning to *GREEN* immediately. 
 
 ## FAQ
 * Q: What happens if the device reboots after collection of Fingerprint Template?
-    * A: Our library stores the Verified Telemetry Fingerprint Templates in the Digital Twin. By fetching the Digital Twin after reboot, the device goes back to its original state that it was in before reboot
+    * A: Our library stores the Verified Telemetry Fingerprint Templates in the Digital Twin. By fetching the Digital Twin after reboot, the device goes back to its original state that it was in before reboot. Thus, user collects the fingerprint template only once when the sensor is provisioned and working. 
+
     * The image below showcases the three states the device goes through:
       1. State 1: Before Reboot
-      2. State 2: After Reboot, BEFORE Digital Twin sync
-      2. State 3: After Reboot, AFTER Digital Twin sync
+      2. State 2: After Reboot, BEFORE Digital Twin sync (since no template is found, telemtry status is unknown and shown in RED) 
+      2. State 3: After Reboot, AFTER Digital Twin sync (template is synced and telemtry status is verified and shown in GREEN)
     ![Device Reboot](media/Grafana-reboot.png)
 * Q: What happens if Verified Telmetry is disabled by the property *enableVerifiedTelemetry* ?
     * A: The telemetry status of all telemetries supported by Verified Telemetry go to *false*, indicating that the telemetries are not Verified.
@@ -152,4 +166,3 @@ You can skip the password reset and proceed forward.
 
 ## Next Steps
 * With this sample, you have now setup a Verified Telemetry Custom Solution Sample and interacted with a Verified Telemetry Device Sample
-* For steps to include Verified Telemetry in your existing solution, refer to documentation in the [Verified Telemetry Library](https://github.com/Azure/Verified-Telemetry)
