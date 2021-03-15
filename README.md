@@ -19,6 +19,8 @@ Verified Telemetry (VT) is a state-of-the-art solution to determine the health o
 |[Verified Telemetry Custom Solution Sample](https://github.com/Azure/Verified-Telemetry-Solution-Sample) | Uses InfluxDB, Grafana and the [Azure IoT Node.js SDK](https://github.com/Azure/azure-iot-sdk-node) to communicate with [Azure IoT Hub](https://docs.microsoft.com/azure/iot-hub/) and showcase how the Verified Telemetry features can be utilized in real world scenarios.|
 
 ## Steps to setup Custom Solution Template
+This getting started guide will help you setup VT solution sample, which allows users to collect fingerprints on-the-fly, view telemetry data and telemetry status in a dashboard. The solution sample is developed in a docker container image, thus enablig users to semaleesly interact with VT enabled device. 
+
 ### Prerequisites
 * Setup one of the board specific device samples: 
     * MXCHIP: 
@@ -38,7 +40,9 @@ git clone --recursive https://github.com/Azure/Verified-Telemetry-Solution-Sampl
 ```
 ### Step 2: Setup Docker Desktop
 * Steps to install can be found [here](https://docs.docker.com/desktop/)
+* If you run into issues, please see [Docker Troubleshooting page](https://docs.docker.com/docker-for-windows/troubleshoot/) for more details
 * Ensure Docker Desktop is up and running
+
 ### Step 3: Get IoT Hub Connection String
 * In your CLI console, run the [az iot hub show-connection-string](https://docs.microsoft.com/en-us/cli/azure/iot/hub?view=azure-cli-latest#az-iot-hub-show-connection-string) command to get the connection string for your IoT hub.
 
@@ -46,14 +50,17 @@ git clone --recursive https://github.com/Azure/Verified-Telemetry-Solution-Sampl
     az iot hub show-connection-string --name {YourIoTHubName}
     ```
 ### Step 4: Modify configuration file for Azure IoT settings
+This is a very important step to ensure the docker image knows which IoT device to connect to. Please provide the following details: 
+
 * Open the following file in a text editor:
 
     > *Verified-Telemetry-Solution-Sample\constants.js*
 * Set the Azure IoT device information constants
-  |Constant name|Value|
-  |-------------|-----|
-  |`connectionString` |{*Your IoT Hub Connection String*}|
-  |`deviceId` |{*Your device ID*}|
+  |Constant name|Value|Example|
+  |-------------|-------|------|
+  |`connectionString` |{*Your IoT Hub Connection String*}| e.g., 'HostName=xxxxxxx.azure-devices.net; SharedAccessKeyName=iothubowner; SharedAccessKey=xxxxxxxxxxx'| 
+  |`deviceId` |{*Your device ID*}| e.g., MyMXChipDevice|
+
   > NOTE: Make sure that you provide the IoT Hub connection string and not the device connection string
 ### Step 4: Run the Docker application
   * Install [VS Code](https://code.visualstudio.com/download)
@@ -68,7 +75,7 @@ git clone --recursive https://github.com/Azure/Verified-Telemetry-Solution-Sampl
     ![Docker File Access](./media/docker-fileaccess.png)
   * In case you update your constants.js file later, Right click on file docker-compose.yml and select *Compose Restart* 
 
-  > NOTE: If you do not want to use VS code and the docker extension, you can run the following command in the root folder
+NOTE: If you do not want to use VS code and the docker extension, you can run the following command in the root folder  *Verified-Telemetry-Solution-Sample*
 
   ```shell
   docker-compose up -d
@@ -83,16 +90,19 @@ git clone --recursive https://github.com/Azure/Verified-Telemetry-Solution-Sampl
 |`username` |admin|
 |`password` |admin|
 
+You can skip the password reset and proceed forward.
+
 ### Step 7: View the Dashboard
 -  Navigate to Search -> Verified Telemetry Dashboard
   ![Search and Select Dashboard ](./media/dashboard_search_select.png)
 
--  Select your device
+-  Select your deviceName from the drop down.
 
 
 ## Steps to setup Verified Telemetry Configuration
 ### Enable Verified Telemetry
-* Ensure Verified Telemetry is enabled
+* By default, Verified Telemetry is enabled and this status is shown on the right-hand side of the dashboard as seen in the image below.
+* If the status is disabled, Please click the *Enable* to turn ON Verified Telemetry. 
 
     ![Setting enableVerifiedTelemetry true ](./media/dashboard_enable.png)
 
