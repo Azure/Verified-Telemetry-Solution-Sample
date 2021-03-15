@@ -19,7 +19,12 @@ Verified Telemetry (VT) is a state-of-the-art solution to determine the health o
 |[Verified Telemetry Custom Solution Sample](https://github.com/Azure/Verified-Telemetry-Solution-Sample) | Uses InfluxDB, Grafana and the [Azure IoT Node.js SDK](https://github.com/Azure/azure-iot-sdk-node) to communicate with [Azure IoT Hub](https://docs.microsoft.com/azure/iot-hub/) and showcase how the Verified Telemetry features can be utilized in real world scenarios.|
 
 ## Steps to setup Custom Solution Template
-This getting started guide will help you setup VT solution sample, which allows users to collect fingerprints on-the-fly, view telemetry data and telemetry status in a dashboard. The solution sample is developed in a docker container image, thus enablig users to semaleesly interact with VT enabled device. 
+This getting started guide will help you setup VT solution sample, which allows users to collect fingerprints on-the-fly, view telemetry data and telemetry status in a dashboard. The solution sample is developed as a docker container image, thus enabling users to seamlessly interact with VT enabled device. 
+
+### Note on methods to setup Solution Sample
+* This guide requires you to install Docker Desktop. 
+* If you do not wish to do that, Refer to our [guide](https://github.com/Azure/Verified-Telemetry-Solution-Sample/blob/main/docs/AzurePipeline.md) on setting up the Solution Sample Using Azure Containers and Azure DevOps
+* After completing the setup using Azure Containers and Azure DevOps, you can continue referring to this guide from [Step 6](https://github.com/Azure/Verified-Telemetry-Solution-Sample#step-6-enter-following-credentials)
 
 ### Prerequisites
 * Setup one of the board specific device samples: 
@@ -65,6 +70,7 @@ This is a very important step to ensure the docker image knows which IoT device 
 ### Step 4: Run the Docker application
   * Install [VS Code](https://code.visualstudio.com/download)
   * Open the Extensions view (Ctrl+Shift+X), search for docker to filter results and select Docker extension authored by Microsoft.
+
     ![Docker Extension](./media/docker-extension.png)
   * Open the folder (Ctrl+K+O) *Verified-Telemetry-Solution-Sample* in VS Code
   * Open Explorer View (Ctrl+Shift+E), Right click on file docker-compose.yml and select *Compose Up*
