@@ -139,7 +139,7 @@ You can skip the password reset and proceed forward.
 
 * In case of a fault with the Soil Moisture sensor (e.g., Soil Moisture 2), the color of Soil Moisture 2 telemetry changes to RED, indicating that the Soil Moisture 2 telemetry has a FAULT and should not be consumed by upstream processes. The 'Device Status' also changes to "Fault in 1+ Telemetries "
 
-* To test the sensors attached are working as expected, hold the mositure sensor in your palm, since these are capacitive sensors, the Soil Moisture values should decrease as shown below.
+* To test whether the attached sensors are working as expected, hold the moisture sensor in your palm as shown below. Since these sensors are capacitive sensors, more the moisture lower is their output. We can see this expected decrease on the solution sample dashboard.
 
     ![Soil Moisture in Hand GIF](media/sensor-palm.gif)
     ![Soil Moisture in Hand Data](media/Grafana-holdhand.png)
