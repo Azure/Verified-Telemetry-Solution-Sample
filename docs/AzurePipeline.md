@@ -121,7 +121,7 @@
 ## Step 15:
 * To access the Solution Sample, navigate to http://vt{YourName}solution.southcentralus.azurecontainer.io:3030/
 
-    > Note: The URL is dependent on the *appName* that you configured in Step 8 
+    > Note: The URL is dependent on the *appName* that you configured in Step 7 
 
     ![Step 16](./media/step13-url.png)
 
