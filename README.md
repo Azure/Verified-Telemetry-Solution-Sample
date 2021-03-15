@@ -23,9 +23,11 @@ Verified Telemetry (VT) is a state-of-the-art solution to determine the health o
 This getting started guide will help you setup VT solution sample, which allows users to collect fingerprints on-the-fly, view telemetry data and telemetry status in a dashboard. The solution sample is developed as a docker container image, thus enabling users to seamlessly interact with VT enabled device. 
 
 ### Note on methods to setup Solution Sample
-* This guide requires you to install Docker Desktop. 
-* If you do not wish to do that, Refer to our [guide](https://github.com/Azure/Verified-Telemetry-Solution-Sample/blob/main/docs/AzurePipeline.md) on setting up the Solution Sample Using Azure Containers and Azure DevOps
-* After completing the setup using Azure Containers and Azure DevOps, you can continue referring to this guide from [Step 6](https://github.com/Azure/Verified-Telemetry-Solution-Sample#step-6-enter-following-credentials)
+You can setup the solution sample in of the two ways mentioned below:
+  * Using Docker Desktop: If you already have installed docker or know how docker works, we suggest to run the solution sample using docker desktop. Please jump to [Step 1](https://github.com/Azure/Verified-Telemetry-Solution-Sample#step-1-clone-the-repository).
+
+  * Using Azure DevOps Pipelines: If you do not wish to install docker desktop, we suggest you to follow our [guide](https://github.com/Azure/Verified-Telemetry-Solution-Sample/blob/main/docs/AzurePipeline.md) on setting up the Solution Sample Using Azure Container Registry and Azure DevOps Pipelines. 
+    >Note: After completing the setup using Azure Containers and Azure DevOps, you can continue referring to this guide from [Step 6](https://github.com/Azure/Verified-Telemetry-Solution-Sample#step-6-enter-following-credentials)
 
 ### Prerequisites
 * Setup one of the board specific device samples: 
