@@ -53,7 +53,7 @@
 
 ## Step 7:
 * Select variable *appName*
-* Update the value to *vt{YourName}solution*
+* Update the value to *vt{YourName}solution* **(This must be all lowercase)**
 
     > Note: The reason for mentioning your name in *appName* is to maintain unique URLs (Refer to step 15)
 * Click on *Update*
