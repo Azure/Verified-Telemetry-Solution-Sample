@@ -139,20 +139,18 @@ You can skip the password reset and proceed forward.
 
     ![Checking deviceStatus ](media/Grafana-working.png)
 
-* In case of a fault with the Soil Moisture sensor (e.g., Soil Moisture 2), the color of Soil Moisture 2 telemetry changes to RED, indicating that the Soil Moisture 2 telemetry has a FAULT and should not be consumed by upstream processes. The 'Device Status' also changes to "Fault in 1+ Telemetries "
-
 * To test whether the attached sensors are working as expected, hold the moisture sensor in your palm as shown below. Since these sensors are capacitive sensors, more the moisture lower is their output. We can see this expected decrease on the solution sample dashboard.
 
     ![Soil Moisture in Hand GIF](media/sensor-palm.gif)
     ![Soil Moisture in Hand Data](media/Grafana-holdhand.png)
 
-* `Simulate a faulty sensor:` To simulate a faulty sensor, just disconnect Ground Pin (GND) on the Soil Moisture Sensor 2 which would create an Open Port fault!
+* `Simulate a faulty sensor:` To simulate a faulty sensor, just disconnect Ground Pin (GND) on the Soil Moisture Sensor 1 which would create an Open Port fault!
 
     * We can see that the telemetry data still shows some data, which is typically garbage/dirty. Detecting such data as garbage/faulty is non-trivial and VT automatically detects the faulty sensor and changes the telemetry color to *RED*
    
     ![Fault in telemetry soilMoistureExternal2](media/Grafana-fault.png)
 
-    * You can now connect back the Ground Pin to the sensor and see that telemetry color of 'Soil Moisture 2' sensor turning to *GREEN* immediately. 
+    * You can now connect back the Ground Pin to the sensor and see that telemetry color of 'Soil Moisture 1' sensor turning to *GREEN* immediately. 
 
 ## FAQ
 * Q: What happens if the device reboots after collection of Fingerprint Template?
