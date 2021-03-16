@@ -117,7 +117,7 @@ You can skip the password reset and proceed forward.
 
 
 ### Collect Fingerprint Template for Soil Moisture 1 telemetry 
-* In order to get VT status for Soil Mositrue 1 telemetry, we should collect a fingerprint template (ideally once).
+* In order to get VT status for Soil Moisture 1 telemetry, we should collect a fingerprint template (ideally once).
 * To collect the fingerprint template for the attached sensor 'Soil Moisture 1' telemetry, issue command `Set/Reset Fingerprint Template`
 
   > Note: If the fingerprint template is not set for a device, VT status cannot be obtained and will result in telemetry data shown in *red*
@@ -126,7 +126,7 @@ You can skip the password reset and proceed forward.
 
 
 ### Collect Fingerprint Template for Soil Moisture 2 telemetry 
-* In order to get VT status for Soil Mositrue 2 telemetry, we should collect a fingerprint template (ideally once).
+* In order to get VT status for Soil Moisture 2 telemetry, we should collect a fingerprint template (ideally once).
 * To collect the fingerprint template for the attached sensor 'Soil Moisture 2' telemetry, issue command `Set/Reset Fingerprint Template`
 
   > Note: If the fingerprint template is not set for a sensor, VT status cannot be obtained and will result in telemetry data shown in *RED*
@@ -146,7 +146,7 @@ You can skip the password reset and proceed forward.
     ![Soil Moisture in Hand GIF](media/sensor-palm.gif)
     ![Soil Moisture in Hand Data](media/Grafana-holdhand.png)
 
-* `Simulate a fauty sensor:` To simulate a faulty sensor, just disconnect Ground Pin (GND) on the Soil Moisture Sensor 2 which would create an Open Port fault!
+* `Simulate a faulty sensor:` To simulate a faulty sensor, just disconnect Ground Pin (GND) on the Soil Moisture Sensor 2 which would create an Open Port fault!
 
     * We can see that the telemetry data still shows some data, which is typically garbage/dirty. Detecting such data as garbage/faulty is non-trivial and VT automatically detects the faulty sensor and changes the telemetry color to *RED*
    
@@ -160,11 +160,11 @@ You can skip the password reset and proceed forward.
 
     * The image below showcases the three states the device goes through:
       1. State 1: Before Reboot
-      2. State 2: After Reboot, BEFORE Digital Twin sync (since no template is found, telemtry status is unknown and shown in RED) 
-      2. State 3: After Reboot, AFTER Digital Twin sync (template is synced and telemtry status is verified and shown in GREEN)
+      2. State 2: After Reboot, BEFORE Digital Twin sync (since no template is found, telemetry status is unknown and shown in RED) 
+      2. State 3: After Reboot, AFTER Digital Twin sync (template is synced and telemetry status is verified and shown in GREEN)
 
       ![Device Reboot](media/Grafana-reboot.png)
-* Q: What happens if Verified Telmetry is disabled by the property *enableVerifiedTelemetry* ?
+* Q: What happens if Verified Telemetry is disabled by the property *enableVerifiedTelemetry* ?
     * A: The telemetry status of all telemetries supported by Verified Telemetry go to *false*, indicating that the telemetries are not Verified.
     ![VT Disabled](media/Grafana-disable.png) 
 * Q: Does the solution sample display Telemetries which are not supported by Verified Telemetry feature?

@@ -1,6 +1,6 @@
 # Steps to setup custom solution sample using Azure DevOps and Azure Containers
-* This guide will help you setup VT solution sample using Azure Pipelines and Azure Containers, instead of Docker Desktop
-* If you still wish to use Docker Desktop, refer to the [Solution Sample Readme](https://github.com/Azure/Verified-Telemetry-Solution-Sample/blob/main/README.md)
+* This guide will help you setup VT solution sample using Azure Pipelines and Azure Containers, instead of Docker Desktop.
+    * If you still wish to use Docker Desktop, refer to the [Solution Sample Readme](https://github.com/Azure/Verified-Telemetry-Solution-Sample/blob/main/README.md)
 ## Prerequisites:
 * Setup one of the board specific device samples: 
     * MXCHIP: 
@@ -23,26 +23,26 @@
 ## Step 1:
 * Navigate to the Solution Sample DevOps Pipeline URL : https://dev.azure.com/DependableIoT/VTSolutionSample/_build
 
-    > Note: If you do not have access, you can raise a request by contacting Dr. Akshay Nambi
+    > Note: If you do not have access to this repository, you can raise a request by contacting Akshay Nambi (akshayn@microsoft.com)
 
 ## Step 2:
-* Select Pipeline *VTSolutionSample*
+* Select Pipeline `VTSolutionSample`
     ![Step 2](./media/step2-selectpipeline.png)
 
 ## Step 3: 
 * You will see a log of Pipeline runs
-* To setup the Solution Sample for your device, click on *Run Pipeline*
+* To setup the Solution Sample for your device, click on `Run Pipeline`
     ![Step 4](./media/step3-runpipeline.png)
 
 ## Step 4: 
 * Now you have to configure the branch which would be picked up by the pipeline 
-* Select the *master* branch
+* Select the `master` branch
 
     ![Step 5](./media/step4-selectbranch.png)
 
 ## Step 5:
 * Now you have to configure the device specific variables for the Solution Sample
-* Select *Variables* under *Advanced Options*
+* Select `Variables` under *Advanced Options*
 
     ![Step 6](./media/step4-selectvariables.png)
 
@@ -83,9 +83,10 @@
 
 * Update the value to * NonProdIoT{YourName}*
 
-    > Note: Please try to create a Resource Group in the specified format so that it is easier for us to delete resources after Bug Bash
-
     > Note: A separate and new Resource Group is required to maintain a custom solution for each user
+    Please try to create a New Resource Group in the specified format so that it is easier for us to delete resources after Bug Bash
+
+    > Note: Please do not change the subscriptionID.
 
 * Click on *Update*
 
