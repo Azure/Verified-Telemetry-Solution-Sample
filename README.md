@@ -81,7 +81,8 @@ This is a very important step to ensure the docker image knows which IoT device 
   * Open Explorer View (Ctrl+Shift+E), Right click on file docker-compose.yml and select *Compose Up*
     
     ![Docker Compose](./media/docker-compose.png)
-  * Ensure notifications on your PC are ON, and accept the file sharing request which you will get while docker creates your application
+  * Ensure notifications on your PC are ON.
+  * You can potentially get a file sharing request shown below while docker creates your application. If you do get the access request, click on *Share It*
 
     ![Docker File Access](./media/docker-fileaccess.png)
   * In case you update your constants.js file later, Right click on file docker-compose.yml and select *Compose Restart* 
