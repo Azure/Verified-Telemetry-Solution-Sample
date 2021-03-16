@@ -39,6 +39,8 @@ You can setup the solution sample in of the two ways mentioned below:
   > NOTE:  Ensure your device is up and running before you proceed to the next step
  
   > NOTE: Save the Device ID that you have configured
+  
+  > WARNING: Ensure the IoT Hub that you are using has ZERO endpoints configured (TSI/Blob Storage etc). This solution sample requires all IoT Hub Data to be routed to the built-in Event Hub and hence if any endpoint is configured, the solution sample would not work!
 
 ### Step 1: Clone the repository
 To clone the repo, run the following command:
