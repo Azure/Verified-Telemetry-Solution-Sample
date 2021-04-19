@@ -75,38 +75,20 @@ let writePropertyToInfluxDB = function (key, value, deviceId, componentName, tim
     let parsedNumber = 0;
     try {
         let parsedDatetime = Date.parse(timestampString);
-        var parsedBool = JSON.parse(value); 
-        parsedNumber = parsedBool ? 1 : 0;
         var adjustedstartTime = parsedDatetime;
         
-        if(isNaN(parsedNumber))
-        {
-            influx.writePoints([
-                {
-                    measurement: 'property_messages',
-                    fields: { jsonvalue: value },
-                    tags: { property: key, deviceId: deviceId, componentName: componentName },
-                    timestamp: adjustedstartTime
-                }],
-                {
-                    precision: 'ms'
-                }
-            )
-        }
-        else{
-            influx.writePoints([
-                {
-                    measurement: 'property_messages',
-                    fields: { jsonvalue: value, jsonasnumber: parsedNumber  },
-                    tags: { property: key, deviceId: deviceId, componentName: componentName },
-                    timestamp: adjustedstartTime
-                }],
-                {
-                    precision: 'ms'
-                }
-            )
-        }
-        console.log('Property with key: ', key, 'and value: ', parsedNumber, 'stored in DB');
+        influx.writePoints([
+            {
+                measurement: 'property_messages',
+                fields: { jsonvalue: value },
+                tags: { property: key, deviceId: deviceId, componentName: componentName },
+                timestamp: adjustedstartTime
+            }],
+            {
+                precision: 'ms'
+            }
+        )
+        console.log('Property with key: ', key, 'and value: ', value, 'stored in DB');
         } catch (e){
             //couldnt parse, so send string only
             influx.writePoints([

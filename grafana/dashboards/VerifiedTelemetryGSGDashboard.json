@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1615370345368,
+  "iteration": 1618868816684,
   "links": [],
   "panels": [
     {
@@ -36,7 +36,6 @@
       "datasource": "InfluxDB",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -77,6 +76,14 @@
                     "to": "",
                     "type": 1,
                     "value": "false"
+                  },
+                  {
+                    "from": "",
+                    "id": 3,
+                    "text": "VT not Initialized",
+                    "to": "",
+                    "type": 1,
+                    "value": "unknown"
                   }
                 ]
               },
@@ -118,7 +125,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.5.4",
       "targets": [
         {
           "groupBy": [],
@@ -156,9 +163,7 @@
     {
       "datasource": "InfluxDB",
       "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
+        "defaults": {},
         "overrides": []
       },
       "gridPos": {
@@ -240,7 +245,6 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "",
       "transparent": true,
       "type": "cloudspout-button-panel"
     },
@@ -248,7 +252,6 @@
       "datasource": "InfluxDB",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -318,7 +321,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.5.4",
       "targets": [
         {
           "groupBy": [],
@@ -362,9 +365,7 @@
     {
       "datasource": "InfluxDB",
       "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
+        "defaults": {},
         "overrides": []
       },
       "gridPos": {
@@ -450,7 +451,6 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "",
       "transparent": true,
       "type": "cloudspout-button-panel"
     },
@@ -461,9 +461,7 @@
       "dashes": false,
       "datasource": null,
       "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
+        "defaults": {},
         "overrides": []
       },
       "fill": 1,
@@ -492,7 +490,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.5.4",
       "pointradius": 8,
       "points": true,
       "renderer": "flot",
@@ -506,6 +504,11 @@
           "$$hashKey": "object:533",
           "alias": "Fault",
           "color": "#F2495C"
+        },
+        {
+          "$$hashKey": "object:710",
+          "alias": "Unverified",
+          "color": "#FF9830"
         }
       ],
       "spaceLength": 10,
@@ -625,6 +628,80 @@
               "key": "telemetry",
               "operator": "=",
               "value": "soilMoistureExternal1"
+            },
+            {
+              "condition": "AND",
+              "key": "verifiedTelemetryStatus",
+              "operator": "=",
+              "value": "false"
+            },
+            {
+              "condition": "AND",
+              "key": "verifiedTelemetrySupport",
+              "operator": "=",
+              "value": "true"
+            }
+          ]
+        },
+        {
+          "alias": "Unverified",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "telemetry_messages",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "jsonasnumber"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "distinct"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "deviceId",
+              "operator": "=~",
+              "value": "/^$DeviceName$/"
+            },
+            {
+              "condition": "AND",
+              "key": "componentName",
+              "operator": "=",
+              "value": "sampleDevice"
+            },
+            {
+              "condition": "AND",
+              "key": "telemetry",
+              "operator": "=",
+              "value": "soilMoistureExternal1"
+            },
+            {
+              "condition": "AND",
+              "key": "verifiedTelemetrySupport",
+              "operator": "=",
+              "value": "false"
             },
             {
               "condition": "AND",
@@ -685,9 +762,7 @@
       "dashes": false,
       "datasource": null,
       "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
+        "defaults": {},
         "overrides": []
       },
       "fill": 1,
@@ -716,7 +791,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.5.4",
       "pointradius": 8,
       "points": true,
       "renderer": "flot",
@@ -730,6 +805,11 @@
           "$$hashKey": "object:306",
           "alias": "Fault",
           "color": "#F2495C"
+        },
+        {
+          "$$hashKey": "object:1585",
+          "alias": "Unverified",
+          "color": "#FF9830"
         }
       ],
       "spaceLength": 10,
@@ -857,6 +937,74 @@
               "value": "false"
             }
           ]
+        },
+        {
+          "alias": "Unverified",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "telemetry_messages",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "jsonasnumber"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "distinct"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "deviceId",
+              "operator": "=~",
+              "value": "/^$DeviceName$/"
+            },
+            {
+              "condition": "AND",
+              "key": "componentName",
+              "operator": "=",
+              "value": "sampleDevice"
+            },
+            {
+              "condition": "AND",
+              "key": "telemetry",
+              "operator": "=",
+              "value": "soilMoistureExternal2"
+            },
+            {
+              "condition": "AND",
+              "key": "verifiedTelemetrySupport",
+              "operator": "=",
+              "value": "false"
+            },
+            {
+              "condition": "AND",
+              "key": "verifiedTelemetryStatus",
+              "operator": "=",
+              "value": "false"
+            }
+          ]
         }
       ],
       "thresholds": [],
@@ -905,9 +1053,7 @@
     {
       "datasource": "InfluxDB",
       "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
+        "defaults": {},
         "overrides": []
       },
       "gridPos": {
@@ -995,9 +1141,7 @@
     {
       "datasource": "InfluxDB",
       "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
+        "defaults": {},
         "overrides": []
       },
       "gridPos": {
@@ -1103,9 +1247,7 @@
       "dashes": false,
       "datasource": null,
       "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
+        "defaults": {},
         "overrides": []
       },
       "fill": 1,
@@ -1134,7 +1276,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.5.4",
       "pointradius": 8,
       "points": true,
       "renderer": "flot",
@@ -1262,9 +1404,7 @@
       "dashes": false,
       "datasource": null,
       "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
+        "defaults": {},
         "overrides": []
       },
       "fill": 1,
@@ -1293,7 +1433,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.5.4",
       "pointradius": 8,
       "points": true,
       "renderer": "flot",
@@ -1421,9 +1561,7 @@
       "dashes": false,
       "datasource": null,
       "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
+        "defaults": {},
         "overrides": []
       },
       "fill": 1,
@@ -1452,7 +1590,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.5.4",
       "pointradius": 8,
       "points": true,
       "renderer": "flot",
@@ -1580,9 +1718,7 @@
       "dashes": false,
       "datasource": null,
       "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
+        "defaults": {},
         "overrides": []
       },
       "fill": 1,
@@ -1611,7 +1747,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.5.4",
       "pointradius": 8,
       "points": true,
       "renderer": "flot",

@@ -7,9 +7,19 @@ var digitalTwinLocalCopy;
 let checkVerifiedTelemetrySupport = function (telemetryName, additionalProperties) {
 
     var verifiedTelemetryComponentName = 'vT' + telemetryName; 
-    if(additionalProperties.hasOwnProperty(verifiedTelemetryComponentName) || digitalTwinLocalCopy.hasOwnProperty(verifiedTelemetryComponentName))
+    if(digitalTwinLocalCopy.hasOwnProperty(verifiedTelemetryComponentName))
     {
-        return(true);
+        console.log("Verified Telemetry: Entering New loop 2")
+        if(digitalTwinLocalCopy[verifiedTelemetryComponentName].hasOwnProperty('fingerprintTemplate'))
+        {
+            console.log("Verified Telemetry: Reference Fingerprint not collected");
+            return(true);
+        }
+        else
+        {
+            console.log("Verified Telemetry: Reference Fingerprint collected");
+            return (false);
+        }
     }
     else
     {
@@ -42,8 +52,20 @@ async function processVerifiedTelemetryProperties(dtServiceclient) {
 
     if(digitalTwinLocalCopy.hasOwnProperty('vTDevice'))
     {
-        influxwriter.writePropertyToInfluxDB('deviceStatus', digitalTwinLocalCopy.vTDevice.deviceStatus, constants.deviceId, 'vTDevice', digitalTwinLocalCopy.vTDevice.$metadata.deviceStatus.lastUpdateTime);
+        if(digitalTwinLocalCopy.hasOwnProperty('vTsoilMoistureExternal1') && digitalTwinLocalCopy.hasOwnProperty('vTsoilMoistureExternal2'))
+        {
+            if(digitalTwinLocalCopy.vTsoilMoistureExternal1.hasOwnProperty('fingerprintTemplate') && digitalTwinLocalCopy.vTsoilMoistureExternal2.hasOwnProperty('fingerprintTemplate'))
+            {
+                influxwriter.writePropertyToInfluxDB('deviceStatus', digitalTwinLocalCopy.vTDevice.deviceStatus, constants.deviceId, 'vTDevice', digitalTwinLocalCopy.vTDevice.$metadata.deviceStatus.lastUpdateTime);
+            }
+            else
+            {
+                influxwriter.writePropertyToInfluxDB('deviceStatus', 'unknown', constants.deviceId, 'vTDevice', digitalTwinLocalCopy.vTDevice.$metadata.deviceStatus.lastUpdateTime);
+            }
+        }
     }
+        
+        
 
     if(digitalTwinLocalCopy.hasOwnProperty('vTDevice'))
     {
