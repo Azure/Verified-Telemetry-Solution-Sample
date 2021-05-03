@@ -50,8 +50,8 @@ There are two ways to utilize this status information in your existing custom so
     ```js
     var { EventHubClient, EventPosition } = require('@azure/event-hubs');
     let iothubreader = require('./eventProcessor');
-    let IoTHubTokenCredentials = require('azure-iot-digitaltwins-service').IoTHubTokenCredentials;
-    let DigitalTwinServiceClient = require('azure-iot-digitaltwins-service').DigitalTwinServiceClient;
+    let IoTHubTokenCredentials = require('iothub').IoTHubTokenCredentials;
+    let DigitalTwinServiceClient = require('azure-iothub').IoTHubTokenCredentials;
     var constants = require('./constants');
 
     const credentials = new IoTHubTokenCredentials(constants.connectionString);
