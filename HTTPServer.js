@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
+
 var constants = require('./constants');
 var http = require('http');
 let { inspect } = require('util');
@@ -61,14 +62,14 @@ async function UpdateDigitalTwin(dtServiceclient, componentName,propertyName,pro
   console.log(patch);
   await dtServiceclient.updateDigitalTwin(constants.deviceId, patch);
 
-  console.log('Patch has been succesfully applied');
+  console.log('Patch has been successfully applied');
 };
   
 async function SendCommand(dtServiceclient, componentName,commandName,commandValue) {
 
   const options = {
-      connectTimeoutInSeconds: 1,
-      responseTimeoutInSeconds: 7 // The responseTimeoutInSeconds must be within [5; 300]
+      connectTimeoutInSeconds: 0,
+      responseTimeoutInSeconds: 30 // The responseTimeoutInSeconds must be within [5; 300]
   };
   var commandResponse;
   if(componentName == ROOT_COMPONENT)
