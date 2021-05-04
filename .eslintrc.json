@@ -1,5 +1,12 @@
 {
     "plugins": ["github"],
     "extends": ["plugin:github/recommended"],
-    "parser": "@typescript-eslint/parser"
+    "parser": "@typescript-eslint/parser",
+    "env": {
+        "es6": true,
+        "node": true
+    },
+    "rules": {
+      "no-console": "off"
+    }
 }

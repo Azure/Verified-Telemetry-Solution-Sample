@@ -13,13 +13,7 @@ const influx = new Influx.InfluxDB({
         jsonvalue: Influx.FieldType.STRING,
         jsonasnumber: Influx.FieldType.FLOAT,
       },
-      tags: [
-        "telemetry",
-        "deviceId",
-        "componentName",
-        "verifiedTelemetrySupport",
-        "verifiedTelemetryStatus",
-      ],
+      tags: ["telemetry", "deviceId", "componentName", "verifiedTelemetrySupport", "verifiedTelemetryStatus"],
     },
     {
       measurement: "property_messages",
@@ -41,7 +35,7 @@ const influx = new Influx.InfluxDB({
  * @param {string} verifiedTelemetrySupport verifiedTelemetrySupport
  * @param {string} verifiedTelemetryStatus verifiedTelemetryStatus
  */
-let writeTelemetryToInfluxDB = function (
+function writeTelemetryToInfluxDB(
   key,
   value,
   deviceId,
@@ -55,13 +49,13 @@ let writeTelemetryToInfluxDB = function (
     influx.writePoints([
       {
         measurement: "telemetry_messages",
-        fields: { jsonvalue: value, jsonasnumber: parsedNumber },
+        fields: {jsonvalue: value, jsonasnumber: parsedNumber},
         tags: {
           telemetry: key,
-          deviceId: deviceId,
-          componentName: componentName,
-          verifiedTelemetrySupport: verifiedTelemetrySupport,
-          verifiedTelemetryStatus: verifiedTelemetryStatus,
+          deviceId,
+          componentName,
+          verifiedTelemetrySupport,
+          verifiedTelemetryStatus,
         },
       },
     ]);
@@ -72,41 +66,34 @@ let writeTelemetryToInfluxDB = function (
     influx.writePoints([
       {
         measurement: "telemetry_messages",
-        fields: { jsonvalue: value },
+        fields: {jsonvalue: value},
         tags: {
           telemetry: key,
-          deviceId: deviceId,
-          componentName: componentName,
-          verifiedTelemetrySupport: verifiedTelemetrySupport,
-          verifiedTelemetryStatus: verifiedTelemetryStatus,
+          deviceId,
+          componentName,
+          verifiedTelemetrySupport,
+          verifiedTelemetryStatus,
         },
       },
     ]);
     // console.log('PARSING ERROR!, ','Telemetry with key: ', key, ', string Value: ', value, 'and vTStatus: ', verifiedTelemetryStatus, 'stored in DB');
   }
-};
+}
 
-let writePropertyToInfluxDB = function (
-  key,
-  value,
-  deviceId,
-  componentName,
-  timestampString
-) {
-  let parsedNumber = 0;
+function writePropertyToInfluxDB(key, value, deviceId, componentName, timestampString) {
   try {
-    let parsedDatetime = Date.parse(timestampString);
-    var adjustedstartTime = parsedDatetime;
+    const parsedDatetime = Date.parse(timestampString);
+    const adjustedstartTime = parsedDatetime;
 
     influx.writePoints(
       [
         {
           measurement: "property_messages",
-          fields: { jsonvalue: value },
+          fields: {jsonvalue: value},
           tags: {
             property: key,
-            deviceId: deviceId,
-            componentName: componentName,
+            deviceId,
+            componentName,
           },
           timestamp: adjustedstartTime,
         },
@@ -115,38 +102,25 @@ let writePropertyToInfluxDB = function (
         precision: "ms",
       }
     );
-    console.log(
-      "Property with key: ",
-      key,
-      "and value: ",
-      value,
-      "stored in DB"
-    );
+    console.log("Property with key: ", key, "and value: ", value, "stored in DB");
   } catch (e) {
     //couldnt parse, so send string only
     influx.writePoints([
       {
         measurement: "property_messages",
-        fields: { jsonvalue: value },
+        fields: {jsonvalue: value},
         tags: {
           property: key,
-          deviceId: deviceId,
-          componentName: componentName,
+          deviceId,
+          componentName,
         },
       },
     ]);
-    console.log(
-      "PARSING ERROR!, ",
-      "Property with key: ",
-      key,
-      "and string Value: ",
-      value,
-      "stored in DB"
-    );
+    console.log("PARSING ERROR!, ", "Property with key: ", key, "and string Value: ", value, "stored in DB");
   }
-};
+}
 
 module.exports = {
-  writeTelemetryToInfluxDB: writeTelemetryToInfluxDB,
-  writePropertyToInfluxDB: writePropertyToInfluxDB,
+  writeTelemetryToInfluxDB,
+  writePropertyToInfluxDB,
 };

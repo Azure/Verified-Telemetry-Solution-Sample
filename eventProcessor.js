@@ -1,22 +1,19 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-let influxwriter = require("./influxWriter");
-const {
-  checkVerifiedTelemetrySupport,
-  getVerifiedTelemetryStatus,
-} = require("./verifiedTelemetryProcessor");
+const influxwriter = require("./influxWriter");
+const {checkVerifiedTelemetrySupport, getVerifiedTelemetryStatus} = require("./verifiedTelemetryProcessor");
 const constants = require("./constants");
 
-let printError = function (err) {
+function printError(err) {
   console.log(err.message);
-};
+}
 
-let processMessage = function (message) {
+function processMessage(message) {
   // console.log(message);
-  let body = message.body;
-  let additionalProperties = message.applicationProperties;
+  const body = message.body;
+  const additionalProperties = message.applicationProperties;
   // console.log(additionalProperties);
-  let deviceId = message.annotations["iothub-connection-device-id"];
+  const deviceId = message.annotations["iothub-connection-device-id"];
   let componentName = "";
   try {
     componentName = message.annotations["dt-subject"];
@@ -24,7 +21,7 @@ let processMessage = function (message) {
     componentName = "Default Component";
   }
   console.log("Received Telemetry");
-  if (deviceId == constants.deviceId) {
+  if (deviceId === constants.deviceId) {
     console.log("Received Telemetry for device:", constants.deviceId);
     for (const key of Object.keys(body)) {
       influxwriter.writeTelemetryToInfluxDB(
@@ -32,11 +29,11 @@ let processMessage = function (message) {
         body[key],
         deviceId,
         componentName,
-        checkVerifiedTelemetrySupport(key, additionalProperties),
+        checkVerifiedTelemetrySupport(key),
         getVerifiedTelemetryStatus(key, additionalProperties)
       );
     }
   }
-};
+}
 
-module.exports = { printError: printError, processMessage: processMessage };
+module.exports = {printError, processMessage};

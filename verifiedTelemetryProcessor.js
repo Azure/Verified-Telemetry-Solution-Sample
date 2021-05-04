@@ -1,21 +1,17 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-let influxwriter = require("./influxWriter");
-var constants = require("./constants");
-var digitalTwinLocalCopy;
 
-let checkVerifiedTelemetrySupport = function (
-  telemetryName,
-  additionalProperties
-) {
-  var verifiedTelemetryComponentName = "vT" + telemetryName;
+const influxwriter = require("./influxWriter");
+const constants = require("./constants");
+
+let digitalTwinLocalCopy;
+
+function checkVerifiedTelemetrySupport(telemetryName) {
+  const verifiedTelemetryComponentName = `vT ${telemetryName}`;
+
   if (digitalTwinLocalCopy.hasOwnProperty(verifiedTelemetryComponentName)) {
     console.log("Verified Telemetry: Entering New loop 2");
-    if (
-      digitalTwinLocalCopy[verifiedTelemetryComponentName].hasOwnProperty(
-        "fingerprintTemplate"
-      )
-    ) {
+    if (digitalTwinLocalCopy[verifiedTelemetryComponentName].hasOwnProperty("fingerprintTemplate")) {
       console.log("Verified Telemetry: Reference Fingerprint not collected");
       return true;
     } else {
@@ -25,32 +21,24 @@ let checkVerifiedTelemetrySupport = function (
   } else {
     return false;
   }
-};
+}
 
-let getVerifiedTelemetryStatus = function (
-  telemetryName,
-  additionalProperties
-) {
-  var verifiedTelemetryComponentName = "vT" + telemetryName;
+function getVerifiedTelemetryStatus(telemetryName, additionalProperties) {
+  const verifiedTelemetryComponentName = `vT${telemetryName}`;
+
   if (additionalProperties.hasOwnProperty(verifiedTelemetryComponentName)) {
-    console.log(
-      "Verified Telemetry Status fetched from Enriched Telemetry Message"
-    );
+    console.log("Verified Telemetry Status fetched from Enriched Telemetry Message");
     return additionalProperties[verifiedTelemetryComponentName];
-  } else if (
-    digitalTwinLocalCopy.hasOwnProperty(verifiedTelemetryComponentName)
-  ) {
+  } else if (digitalTwinLocalCopy.hasOwnProperty(verifiedTelemetryComponentName)) {
     console.log("Verified Telemetry Status fetched from Digital Twin");
     return digitalTwinLocalCopy[verifiedTelemetryComponentName].telemetryStatus;
   } else {
     return false;
   }
-};
+}
 
 async function processVerifiedTelemetryProperties(dtServiceclient) {
-  digitalTwinLocalCopy = await dtServiceclient.getDigitalTwin(
-    constants.deviceId
-  );
+  digitalTwinLocalCopy = await dtServiceclient.getDigitalTwin(constants.deviceId);
 
   if (digitalTwinLocalCopy.hasOwnProperty("vTDevice")) {
     if (
@@ -58,12 +46,8 @@ async function processVerifiedTelemetryProperties(dtServiceclient) {
       digitalTwinLocalCopy.hasOwnProperty("vTsoilMoistureExternal2")
     ) {
       if (
-        digitalTwinLocalCopy.vTsoilMoistureExternal1.hasOwnProperty(
-          "fingerprintTemplate"
-        ) &&
-        digitalTwinLocalCopy.vTsoilMoistureExternal2.hasOwnProperty(
-          "fingerprintTemplate"
-        )
+        digitalTwinLocalCopy.vTsoilMoistureExternal1.hasOwnProperty("fingerprintTemplate") &&
+        digitalTwinLocalCopy.vTsoilMoistureExternal2.hasOwnProperty("fingerprintTemplate")
       ) {
         influxwriter.writePropertyToInfluxDB(
           "deviceStatus",
@@ -90,14 +74,13 @@ async function processVerifiedTelemetryProperties(dtServiceclient) {
       digitalTwinLocalCopy.vTDevice.enableVerifiedTelemetry,
       constants.deviceId,
       "vTDevice",
-      digitalTwinLocalCopy.vTDevice.$metadata.enableVerifiedTelemetry
-        .lastUpdateTime
+      digitalTwinLocalCopy.vTDevice.$metadata.enableVerifiedTelemetry.lastUpdateTime
     );
   }
 }
 
 module.exports = {
-  checkVerifiedTelemetrySupport: checkVerifiedTelemetrySupport,
-  getVerifiedTelemetryStatus: getVerifiedTelemetryStatus,
-  processVerifiedTelemetryProperties: processVerifiedTelemetryProperties,
+  checkVerifiedTelemetrySupport,
+  getVerifiedTelemetryStatus,
+  processVerifiedTelemetryProperties,
 };
