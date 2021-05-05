@@ -1,35 +1,46 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-let influxwriter = require('./influxWriter');
-const { checkVerifiedTelemetrySupport, getVerifiedTelemetryStatus } = require('./verifiedTelemetryProcessor');
-const constants = require('./constants');
 
-let printError = function (err) {
-    console.log(err.message);
-};
+const influxwriter = require('./influxWriter')
+const { checkVerifiedTelemetrySupport, getVerifiedTelemetryStatus } = require('./verifiedTelemetryProcessor')
+const constants = require('./constants')
 
-let processMessage = function (message) {
+const printError = function (err)
+{
+    console.log(err.message)
+}
+
+const processMessage = function (message)
+{
     // console.log(message);
-    let body = message.body;
-    let additionalProperties = message.applicationProperties;
+    const body = message.body
+    const additionalProperties = message.applicationProperties
     // console.log(additionalProperties);
-    let deviceId = message.annotations["iothub-connection-device-id"];
-    let componentName = ""
-    try {
-        componentName = message.annotations["dt-subject"];
-    } catch (e) {
-        componentName = "Default Component";
-    }
-    console.log("Received Telemetry");
-    if(deviceId == constants.deviceId)
+    const deviceId = message.annotations['iothub-connection-device-id']
+    let componentName = ''
+    try
     {
-        console.log("Received Telemetry for device:",constants.deviceId);
+        componentName = message.annotations['dt-subject']
+    }
+    catch (e)
+    {
+        componentName = 'Default Component'
+    }
+    console.log('Received Telemetry')
+    if (deviceId === constants.deviceId)
+    {
+        console.log('Received Telemetry for device:', constants.deviceId)
         for (const key of Object.keys(body))
         {
-            influxwriter.writeTelemetryToInfluxDB(key, body[key], deviceId,componentName, checkVerifiedTelemetrySupport(key, additionalProperties), getVerifiedTelemetryStatus(key, additionalProperties));
+            influxwriter.writeTelemetryToInfluxDB(
+                key,
+                body[key],
+                deviceId,
+                componentName,
+                checkVerifiedTelemetrySupport(key, additionalProperties),
+                getVerifiedTelemetryStatus(key, additionalProperties))
         }
     }
-    
-};
+}
 
-module.exports = { printError: printError, processMessage: processMessage}
+module.exports = { printError: printError, processMessage: processMessage }
