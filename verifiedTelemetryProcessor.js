@@ -9,9 +9,9 @@ let digitalTwinLocalCopy;
 function checkVerifiedTelemetrySupport(telemetryName) {
   const verifiedTelemetryComponentName = `vT ${telemetryName}`;
 
-  if (digitalTwinLocalCopy.hasOwnProperty(verifiedTelemetryComponentName)) {
+  if (digitalTwinLocalCopy.hasOwnProperty(verifiedTelemetryComponentName) && digitalTwinLocalCopy.hasOwnProperty('vTDevice') && digitalTwinLocalCopy.vTDevice.hasOwnProperty('enableVerifiedTelemetry')) {
     console.log("Verified Telemetry: Entering New loop 2");
-    if (digitalTwinLocalCopy[verifiedTelemetryComponentName].hasOwnProperty("fingerprintTemplate")) {
+    if (digitalTwinLocalCopy[verifiedTelemetryComponentName].hasOwnProperty("fingerprintTemplate") && digitalTwinLocalCopy.vTDevice.enableVerifiedTelemetry == true) {
       console.log("Verified Telemetry: Reference Fingerprint not collected");
       return true;
     } else {
@@ -40,14 +40,14 @@ function getVerifiedTelemetryStatus(telemetryName, additionalProperties) {
 async function processVerifiedTelemetryProperties(dtServiceclient) {
   digitalTwinLocalCopy = await dtServiceclient.getDigitalTwin(constants.deviceId);
 
-  if (digitalTwinLocalCopy.hasOwnProperty("vTDevice")) {
+  if (digitalTwinLocalCopy.hasOwnProperty("vTDevice") && digitalTwinLocalCopy.vTDevice.hasOwnProperty('enableVerifiedTelemetry')) {
     if (
       digitalTwinLocalCopy.hasOwnProperty("vTsoilMoistureExternal1") &&
       digitalTwinLocalCopy.hasOwnProperty("vTsoilMoistureExternal2")
     ) {
       if (
         digitalTwinLocalCopy.vTsoilMoistureExternal1.hasOwnProperty("fingerprintTemplate") &&
-        digitalTwinLocalCopy.vTsoilMoistureExternal2.hasOwnProperty("fingerprintTemplate")
+        digitalTwinLocalCopy.vTsoilMoistureExternal2.hasOwnProperty("fingerprintTemplate" && digitalTwinLocalCopy.vTDevice.enableVerifiedTelemetry == true)
       ) {
         influxwriter.writePropertyToInfluxDB(
           "deviceStatus",
