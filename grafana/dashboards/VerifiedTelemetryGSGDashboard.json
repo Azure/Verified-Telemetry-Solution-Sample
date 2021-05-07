@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1618868816684,
+  "iteration": 1620410228816,
   "links": [],
   "panels": [
     {
@@ -125,7 +125,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.5.4",
+      "pluginVersion": "7.5.5",
       "targets": [
         {
           "groupBy": [],
@@ -321,7 +321,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.5.4",
+      "pluginVersion": "7.5.5",
       "targets": [
         {
           "groupBy": [],
@@ -490,7 +490,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.4",
+      "pluginVersion": "7.5.5",
       "pointradius": 8,
       "points": true,
       "renderer": "flot",
@@ -791,7 +791,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.4",
+      "pluginVersion": "7.5.5",
       "pointradius": 8,
       "points": true,
       "renderer": "flot",
@@ -1276,7 +1276,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.4",
+      "pluginVersion": "7.5.5",
       "pointradius": 8,
       "points": true,
       "renderer": "flot",
@@ -1433,7 +1433,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.4",
+      "pluginVersion": "7.5.5",
       "pointradius": 8,
       "points": true,
       "renderer": "flot",
@@ -1590,7 +1590,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.4",
+      "pluginVersion": "7.5.5",
       "pointradius": 8,
       "points": true,
       "renderer": "flot",
@@ -1747,7 +1747,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.4",
+      "pluginVersion": "7.5.5",
       "pointradius": 8,
       "points": true,
       "renderer": "flot",
@@ -1869,7 +1869,7 @@
       }
     }
   ],
-  "refresh": "5s",
+  "refresh": "1s",
   "schemaVersion": 27,
   "style": "dark",
   "tags": [],
@@ -1879,8 +1879,8 @@
         "allValue": null,
         "current": {
           "selected": false,
-          "text": "MyMXChipDevice",
-          "value": "MyMXChipDevice"
+          "text": "stm",
+          "value": "stm"
         },
         "datasource": "InfluxDB",
         "definition": "",
@@ -1911,6 +1911,7 @@
   },
   "timepicker": {
     "refresh_intervals": [
+      "1s",
       "5s",
       "10s",
       "30s",
