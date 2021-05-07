@@ -20,7 +20,8 @@ services:
     ports:
       - 3030:3030
     volumes:
-      - ./grafana:/etc/grafana/provisioning/
+      - ./grafana/provisioning:/etc/grafana/provisioning/
+      - ./grafana/grafana.ini:/etc/grafana/grafana.ini
 
   influxdb:
     image: influxdb:1.8
