@@ -2,30 +2,28 @@ version: "2"
 
 services:
   web:
-    build:
-      context: .
+    build: ./app
     container_name: app
     depends_on:
       - grafana
       - influxdb
     ports:
       - 8080:8080
-    links:
-      - influxdb
 
   grafana:
     image: grafana/grafana
+    environment:
+      GF_SERVER_HTTP_PORT: 3030
+      GF_INSTALL_PLUGINS: https://github.com/cloudspout/cloudspout-button-panel/releases/download/7.0.2/cloudspout-button-panel.zip;cloudspout-button-panel
     container_name: grafana
     restart: always
     ports:
       - 3030:3030
     volumes:
       - ./grafana:/etc/grafana/provisioning/
-    environment:
-      GF_SERVER_HTTP_PORT: 3030
-      GF_INSTALL_PLUGINS: https://github.com/cloudspout/cloudspout-button-panel/releases/download/7.0.2/cloudspout-button-panel.zip;cloudspout-button-panel
 
   influxdb:
+    image: influxdb:1.8
     environment:
       INFLUXDB_DB: vt
       INFLUXDB_ADMIN_ENABLED: "true"
@@ -33,7 +31,6 @@ services:
       INFLUXDB_ADMIN_PASSWORD: supersecretpassword
       INFLUXDB_USER: telegraf
       INFLUXDB_USER_PASSWORD: secretpassword
-    image: influxdb:1.8
     container_name: influxdb
     restart: always
     ports:

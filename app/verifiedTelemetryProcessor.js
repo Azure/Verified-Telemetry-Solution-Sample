@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
+
 const influxwriter = require('./influxWriter')
 const constants = require('./constants')
 let digitalTwinLocalCopy

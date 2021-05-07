@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
+
 const Influx = require('influx')
 
 // So this is some generic influxDB schema for IoT Data.
