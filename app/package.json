@@ -4,7 +4,8 @@
   "description": "test",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint -c ../../../../.eslintrc.json .",
+    "lint": "eslint **/*.js",
+    "format": "eslint **/*.js --fix",
     "npmlockrefresh": "npm i --package-lock-only",
     "ci": "npm -s run lint",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,7 +19,10 @@
     "influx": "^5.8.0"
   },
   "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-config-google": "^0.13.0"
+    "eslint": "^7.25.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1"
   }
 }

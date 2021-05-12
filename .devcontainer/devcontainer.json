@@ -3,10 +3,10 @@
 {
 	"name": "Node.js",
 
+	// Compose settings
 	"dockerComposeFile": "../docker-compose.yml",
-
+	"runServices": [],
 	"service": "web",
-
 	"workspaceFolder": "/home/app",
 
 	// Set *default* container specific settings.json values on container create.
