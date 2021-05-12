@@ -1,8 +1,9 @@
-FROM node:10.23.1-alpine
+FROM node:lts-alpine3.13
 
-ADD . /home/app
+EXPORT 8080
+
 WORKDIR /home/app
-EXPOSE 8080
+COPY . /home/app/
 RUN npm install
 
-CMD node index.js
+CMD npm start
