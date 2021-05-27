@@ -1,9 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-const influxwriter = require('./influxWriter')
-const constants = require('./constants')
-let digitalTwinLocalCopy
+const IoTHubTokenCredentials = require('azure-iothub').IoTHubTokenCredentials
+const DigitalTwinServiceClient = require('azure-iothub').DigitalTwinClient
+const influxwriter = require('./influxReaderWriter')
+const iotHubConfiguration = require('./iotHubConfiguration')
+var digitalTwinLocalCopy = {}
 
 const checkVerifiedTelemetrySupport = function (telemetryName, additionalProperties)
 {
@@ -12,16 +14,15 @@ const checkVerifiedTelemetrySupport = function (telemetryName, additionalPropert
         digitalTwinLocalCopy.hasOwnProperty('vTDevice') &&
         digitalTwinLocalCopy.vTDevice.hasOwnProperty('enableVerifiedTelemetry'))
     {
-        console.log('Verified Telemetry: Entering New loop 2')
         if (digitalTwinLocalCopy[verifiedTelemetryComponentName].hasOwnProperty('fingerprintTemplate') &&
             digitalTwinLocalCopy.vTDevice.enableVerifiedTelemetry === true)
         {
-            console.log('Verified Telemetry: Reference Fingerprint not collected')
+            console.log('Verified Telemetry: Reference Fingerprint collected')
             return (true)
         }
         else
         {
-            console.log('Verified Telemetry: Reference Fingerprint collected')
+            console.log('Verified Telemetry: Reference Fingerprint not collected')
             return (false)
         }
     }
@@ -50,9 +51,17 @@ const getVerifiedTelemetryStatus = function (telemetryName, additionalProperties
     }
 }
 
-async function processVerifiedTelemetryProperties (dtServiceclient)
+async function processVerifiedTelemetryProperties ()
 {
-    digitalTwinLocalCopy = await dtServiceclient.getDigitalTwin(constants.deviceId)
+    var dtServiceclient
+    try{
+        const credentials = new IoTHubTokenCredentials(iotHubConfiguration.connectionString)
+        dtServiceclient = new DigitalTwinServiceClient(credentials)
+        digitalTwinLocalCopy = await dtServiceclient.getDigitalTwin(iotHubConfiguration.deviceId)
+    }catch(error) {
+        console.error("Error in fetching Digital Twin:", error);
+    }
+    
 
     if (digitalTwinLocalCopy.hasOwnProperty('vTDevice') &&
         digitalTwinLocalCopy.vTDevice.hasOwnProperty('enableVerifiedTelemetry'))
@@ -67,7 +76,7 @@ async function processVerifiedTelemetryProperties (dtServiceclient)
                 influxwriter.writePropertyToInfluxDB(
                     'deviceStatus',
                     digitalTwinLocalCopy.vTDevice.deviceStatus,
-                    constants.deviceId,
+                    iotHubConfiguration.deviceId,
                     'vTDevice',
                     digitalTwinLocalCopy.vTDevice.$metadata.deviceStatus.lastUpdateTime)
             }
@@ -76,7 +85,7 @@ async function processVerifiedTelemetryProperties (dtServiceclient)
                 influxwriter.writePropertyToInfluxDB(
                     'deviceStatus',
                     'unknown',
-                    constants.deviceId,
+                    iotHubConfiguration.deviceId,
                     'vTDevice',
                     digitalTwinLocalCopy.vTDevice.$metadata.deviceStatus.lastUpdateTime)
             }
@@ -88,10 +97,11 @@ async function processVerifiedTelemetryProperties (dtServiceclient)
         influxwriter.writePropertyToInfluxDB(
             'enableVerifiedTelemetry',
             digitalTwinLocalCopy.vTDevice.enableVerifiedTelemetry,
-            constants.deviceId,
+            iotHubConfiguration.deviceId,
             'vTDevice',
             digitalTwinLocalCopy.vTDevice.$metadata.enableVerifiedTelemetry.lastUpdateTime)
     }
+    setTimeout(processVerifiedTelemetryProperties, 10000)
 };
 
 module.exports =

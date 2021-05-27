@@ -17,7 +17,8 @@
     "@azure/event-hubs": "^2.1.0",
     "azure-iot-device": "^1.17.3",
     "azure-iothub": "^1.14.0",
-    "influx": "^5.8.0"
+    "influx": "^5.8.0",
+    "express": "^4.17.1"
   },
   "devDependencies": {
     "eslint": "^7.25.0",
