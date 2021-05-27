@@ -82,7 +82,7 @@ This is a very important step to ensure the custom solution can fetch telemetry 
 
   ![Solution Sample Configuration Form](./media/config_landing_page.png)
 
-* Enter the Azure IoT Hub Connection String saved in [Step 4](https://github.com/Azure/Verified-Telemetry-Solution-Sample#step-4)
+* Enter the Azure IoT Hub Connection String saved in [Step 4](https://github.com/Azure/Verified-Telemetry-Solution-Sample#step-4-get-iot-hub-connection-string)
     * Example - `HostName=xxxxxxx.azure-devices.net; SharedAccessKeyName=iothubowner; SharedAccessKey=xxxxxxxxxxx`
     > NOTE: Make sure that you provide the IoT Hub connection string and not the device connection string
   
