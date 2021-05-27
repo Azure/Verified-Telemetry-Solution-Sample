@@ -5,7 +5,7 @@ const IoTHubTokenCredentials = require('azure-iothub').IoTHubTokenCredentials
 const DigitalTwinServiceClient = require('azure-iothub').DigitalTwinClient
 const influxwriter = require('./influxReaderWriter')
 const iotHubConfiguration = require('./iotHubConfiguration')
-var digitalTwinLocalCopy = {}
+let digitalTwinLocalCopy = {}
 
 const checkVerifiedTelemetrySupport = function (telemetryName, additionalProperties)
 {
@@ -53,15 +53,17 @@ const getVerifiedTelemetryStatus = function (telemetryName, additionalProperties
 
 async function processVerifiedTelemetryProperties ()
 {
-    var dtServiceclient
-    try{
+    let dtServiceclient
+    try
+    {
         const credentials = new IoTHubTokenCredentials(iotHubConfiguration.connectionString)
         dtServiceclient = new DigitalTwinServiceClient(credentials)
         digitalTwinLocalCopy = await dtServiceclient.getDigitalTwin(iotHubConfiguration.deviceId)
-    }catch(error) {
-        console.error("Error in fetching Digital Twin:", error);
     }
-    
+    catch (error)
+    {
+        console.error('Error in fetching Digital Twin:', error)
+    }
 
     if (digitalTwinLocalCopy.hasOwnProperty('vTDevice') &&
         digitalTwinLocalCopy.vTDevice.hasOwnProperty('enableVerifiedTelemetry'))

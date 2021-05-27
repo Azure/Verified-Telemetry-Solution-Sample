@@ -50,7 +50,8 @@ const processMessage = function (message)
     }
 }
 
-async function eventHubReader() {
+async function eventHubReader ()
+{
     let ehClient
 
     EventHubClient.createFromIotHubConnectionString(iotHubConfiguration.connectionString).then(function (client)
@@ -68,7 +69,6 @@ async function eventHubReader() {
             )
         })
     }).catch(printErrorRetry)
-    
 }
 
-module.exports = {eventHubReader: eventHubReader}
+module.exports = { eventHubReader: eventHubReader }

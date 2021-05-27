@@ -67,12 +67,12 @@ const writeTelemetryToInfluxDB = function (key, value, deviceId, componentName, 
             }]
         )
 
-    // console.log('Telemetry with key: ',
-    //     key, ', value: ', parsedNumber, 'and vTStatus: ', verifiedTelemetryStatus, 'stored in DB');
+        // console.log('Telemetry with key: ',
+        //     key, ', value: ', parsedNumber, 'and vTStatus: ', verifiedTelemetryStatus, 'stored in DB');
     }
     catch (e)
     {
-    // couldn't parse, so send string only
+        // couldn't parse, so send string only
         influx.writePoints([
             {
                 measurement: 'telemetry_messages',
@@ -86,8 +86,8 @@ const writeTelemetryToInfluxDB = function (key, value, deviceId, componentName, 
                 }
             }
         ])
-    // console.log('PARSING ERROR!, ','Telemetry with key: ',
-    //     key, ', string Value: ', value, 'and vTStatus: ', verifiedTelemetryStatus, 'stored in DB');
+        // console.log('PARSING ERROR!, ','Telemetry with key: ',
+        //     key, ', string Value: ', value, 'and vTStatus: ', verifiedTelemetryStatus, 'stored in DB');
     }
 }
 
@@ -113,7 +113,7 @@ const writePropertyToInfluxDB = function (key, value, deviceId, componentName, t
     }
     catch (e)
     {
-    // couldnt parse, so send string only
+        // couldnt parse, so send string only
         influx.writePoints([
             {
                 measurement: 'property_messages',
@@ -129,12 +129,11 @@ const writeIoTHubConfigurationToInfluxDB = function (connectionString, deviceID)
 {
     try
     {
-
         influx.writePoints([
             {
                 measurement: 'configuration',
-                fields: { iothubconnectionstring: connectionString, deviceid: deviceID},
-                tags: {},
+                fields: { iothubconnectionstring: connectionString, deviceid: deviceID },
+                tags: {}
             }],
         {
             precision: 'ms'
@@ -144,22 +143,23 @@ const writeIoTHubConfigurationToInfluxDB = function (connectionString, deviceID)
     }
     catch (e)
     {
-    
         console.log('PARSING ERROR:', e)
     }
 }
 
 const readIoTHubConfigurationFromInfluxDB = function ()
 {
-    influx.query(`SELECT * FROM configuration GROUP BY * ORDER BY DESC LIMIT 1`).then(results => {
+    influx.query('SELECT * FROM configuration GROUP BY * ORDER BY DESC LIMIT 1').then(results =>
+    {
         console.log(results)
-        console.log("Connection String: ", results[0].iothubconnectionstring)
-        console.log("Device ID: ", results[0].deviceid)
+        console.log('Connection String: ', results[0].iothubconnectionstring)
+        console.log('Device ID: ', results[0].deviceid)
         iotHubConfiguration.connectionString = results[0].iothubconnectionstring
-        iotHubConfiguration.deviceId =  results[0].deviceid
-      }).catch(error => {
+        iotHubConfiguration.deviceId = results[0].deviceid
+    }).catch(error =>
+    {
         console.log(error)
-      });
+    })
 }
 
 module.exports = { writeTelemetryToInfluxDB: writeTelemetryToInfluxDB, writePropertyToInfluxDB: writePropertyToInfluxDB, writeIoTHubConfigurationToInfluxDB: writeIoTHubConfigurationToInfluxDB, readIoTHubConfigurationFromInfluxDB: readIoTHubConfigurationFromInfluxDB }
