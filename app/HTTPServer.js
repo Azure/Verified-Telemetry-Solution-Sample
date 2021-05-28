@@ -21,6 +21,11 @@ async function expressAppConfig ()
     const app = express()
     app.use(express.urlencoded())
 
+    app.get('/', function (req, res)
+    {
+        res.redirect('http://localhost:8080/configuration-form')
+    })
+
     app.get('/configuration-form', function (req, res)
     {
         res.sendFile(path.join(__dirname, './form.html'))

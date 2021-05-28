@@ -15,8 +15,21 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1620410228816,
-  "links": [],
+  "iteration": 1622214352027,
+  "links": [
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [],
+      "targetBlank": true,
+      "title": "Solution Sample Configuration",
+      "tooltip": "Open Configuration Page",
+      "type": "link",
+      "url": "http://localhost:8080/configuration-form"
+    }
+  ],
   "panels": [
     {
       "collapsed": false,
@@ -1877,11 +1890,6 @@
     "list": [
       {
         "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "stm",
-          "value": "stm"
-        },
         "datasource": "InfluxDB",
         "definition": "",
         "description": null,
