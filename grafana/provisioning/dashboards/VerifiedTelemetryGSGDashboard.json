@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1622214352027,
+  "iteration": 1624406876152,
   "links": [
     {
       "asDropdown": false,
@@ -34,6 +34,10 @@
     {
       "collapsed": false,
       "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -75,28 +79,18 @@
                 "id": "mappings",
                 "value": [
                   {
-                    "from": "",
-                    "id": 1,
-                    "text": "Device Working",
-                    "to": "",
-                    "type": 1,
-                    "value": "true"
-                  },
-                  {
-                    "from": "",
-                    "id": 2,
-                    "text": "Fault in 1+ Telemetries",
-                    "to": "",
-                    "type": 1,
-                    "value": "false"
-                  },
-                  {
-                    "from": "",
-                    "id": 3,
-                    "text": "VT not Initialized",
-                    "to": "",
-                    "type": 1,
-                    "value": "unknown"
+                    "options": {
+                      "false": {
+                        "text": "Fault in 1+ Telemetries"
+                      },
+                      "true": {
+                        "text": "Device Working"
+                      },
+                      "unknown": {
+                        "text": "VT not Initialized"
+                      }
+                    },
+                    "type": "value"
                   }
                 ]
               },
@@ -138,7 +132,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "8.0.3",
       "targets": [
         {
           "groupBy": [],
@@ -175,10 +169,6 @@
     },
     {
       "datasource": "InfluxDB",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 2,
         "w": 3,
@@ -187,6 +177,10 @@
       },
       "id": 46,
       "options": {
+        "contentType": "application/json",
+        "icon": "cog",
+        "isAuth": false,
+        "method": "GET",
         "newParamName": "",
         "newParamValue": "",
         "orientation": {
@@ -212,11 +206,9 @@
           ]
         ],
         "text": "Enable",
-        "type": {
-          "label": "Query",
-          "value": "QUERY"
-        },
-        "url": "http://localhost:8080"
+        "type": "query",
+        "url": "http://localhost:8080",
+        "variant": "primary"
       },
       "pluginVersion": "7.1.5",
       "targets": [
@@ -291,20 +283,15 @@
                 "id": "mappings",
                 "value": [
                   {
-                    "from": "",
-                    "id": 1,
-                    "text": "Enabled",
-                    "to": "",
-                    "type": 1,
-                    "value": "true"
-                  },
-                  {
-                    "from": "",
-                    "id": 2,
-                    "text": "Disabled",
-                    "to": "",
-                    "type": 1,
-                    "value": "false"
+                    "options": {
+                      "false": {
+                        "text": "Disabled"
+                      },
+                      "true": {
+                        "text": "Enabled"
+                      }
+                    },
+                    "type": "value"
                   }
                 ]
               }
@@ -334,7 +321,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "8.0.3",
       "targets": [
         {
           "groupBy": [],
@@ -377,10 +364,6 @@
     },
     {
       "datasource": "InfluxDB",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 2,
         "w": 3,
@@ -389,6 +372,10 @@
       },
       "id": 45,
       "options": {
+        "contentType": "application/json",
+        "icon": "cog",
+        "isAuth": false,
+        "method": "GET",
         "newParamName": "",
         "newParamValue": "",
         "orientation": {
@@ -414,10 +401,7 @@
           ]
         ],
         "text": "Disable",
-        "type": {
-          "label": "Query",
-          "value": "QUERY"
-        },
+        "type": "query",
         "url": "http://localhost:8080/",
         "variant": {
           "label": "Destructive",
@@ -473,10 +457,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -503,7 +483,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "8.0.3",
       "pointradius": 8,
       "points": true,
       "renderer": "flot",
@@ -774,10 +754,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -804,7 +780,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "8.0.3",
       "pointradius": 8,
       "points": true,
       "renderer": "flot",
@@ -1065,10 +1041,6 @@
     },
     {
       "datasource": "InfluxDB",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 3,
         "w": 6,
@@ -1077,6 +1049,10 @@
       },
       "id": 80,
       "options": {
+        "contentType": "application/json",
+        "icon": "cog",
+        "isAuth": false,
+        "method": "GET",
         "newParamName": "",
         "newParamValue": "",
         "orientation": {
@@ -1102,11 +1078,9 @@
           ]
         ],
         "text": "Reset Fingerprint",
-        "type": {
-          "label": "Query",
-          "value": "QUERY"
-        },
-        "url": "http://localhost:8080/"
+        "type": "query",
+        "url": "http://localhost:8080/",
+        "variant": "primary"
       },
       "pluginVersion": "7.1.5",
       "targets": [
@@ -1153,10 +1127,6 @@
     },
     {
       "datasource": "InfluxDB",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 3,
         "w": 6,
@@ -1165,6 +1135,10 @@
       },
       "id": 30,
       "options": {
+        "contentType": "application/json",
+        "icon": "cog",
+        "isAuth": false,
+        "method": "GET",
         "newParamName": "",
         "newParamValue": "",
         "orientation": {
@@ -1190,11 +1164,9 @@
           ]
         ],
         "text": "Reset Fingerprint",
-        "type": {
-          "label": "Query",
-          "value": "QUERY"
-        },
-        "url": "http://localhost:8080/"
+        "type": "query",
+        "url": "http://localhost:8080/",
+        "variant": "primary"
       },
       "pluginVersion": "7.1.5",
       "targets": [
@@ -1242,6 +1214,10 @@
     {
       "collapsed": false,
       "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1259,10 +1235,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1289,7 +1261,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "8.0.3",
       "pointradius": 8,
       "points": true,
       "renderer": "flot",
@@ -1416,10 +1388,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1446,7 +1414,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "8.0.3",
       "pointradius": 8,
       "points": true,
       "renderer": "flot",
@@ -1573,10 +1541,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1603,7 +1567,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "8.0.3",
       "pointradius": 8,
       "points": true,
       "renderer": "flot",
@@ -1730,10 +1694,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1760,7 +1720,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "8.0.3",
       "pointradius": 8,
       "points": true,
       "renderer": "flot",
@@ -1882,14 +1842,19 @@
       }
     }
   ],
-  "refresh": "1s",
-  "schemaVersion": 27,
+  "refresh": "",
+  "schemaVersion": 30,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": [
       {
         "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "vt_stm",
+          "value": "vt_stm"
+        },
         "datasource": "InfluxDB",
         "definition": "",
         "description": null,
@@ -1906,7 +1871,6 @@
         "skipUrlSync": false,
         "sort": 1,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
