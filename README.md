@@ -78,7 +78,7 @@ NOTE: If you do not want to use VS code and the docker extension, you can run th
 This is a very important step to ensure the custom solution can fetch telemetry from Azure Event Hub and send command & property updates to your IoT Device
 
 * Open your browser and navigate to below URL to access the Solution Sample Configuration Form
-  > http://localhost:8080
+  > http://localhost:8080/configuration-form
 
   ![Solution Sample Configuration Form](./media/config_landing_page.png)
 
@@ -86,7 +86,7 @@ This is a very important step to ensure the custom solution can fetch telemetry 
 
   |Field|Value|Example|
   |-------------|-------|------|
-  |`IoT Hub Connection String` |{*Your IoT Hub Connection String saved in [Step 4](https://github.com/Azure/Verified-Telemetry-Solution-Sample#step-4-get-iot-hub-connection-string)*}| e.g., 'HostName=xxxxxxx.azure-devices.net; SharedAccessKeyName=iothubowner; SharedAccessKey=xxxxxxxxxxx'| 
+  |`IoT Hub Connection String` |{*Your IoT Hub Connection String saved in [Step 4](https://github.com/Azure/Verified-Telemetry-Solution-Sample#step-4-get-iot-hub-connection-string)*}| e.g., 'HostName=xxxxxxx.azure-devices.net; SharedAccessKeyName=iothubowner; SharedAccessKey=xxxxxxxxxxx'|
   |`Device ID` |{*Your device ID*}| e.g., MyMXChipDevice|
 
   ![Save Config](./media/config_landing_page_save.png)
@@ -190,7 +190,7 @@ You can skip the password reset and proceed forward.
     ![Unsupported Telmetries](media/Grafana-unverified.png)  
 * Q: Can the solution be reconfigured to  read and interact with a new device which might be connected to a different IoT Hub?
     * A: Yes! Open your browser and navigate to below URL
-      > http://localhost:8080
+      > http://localhost:8080/configuration-form
       
       Submitting this form with new and valid details will re-configure the solution sample to read and interact with a new device
 
