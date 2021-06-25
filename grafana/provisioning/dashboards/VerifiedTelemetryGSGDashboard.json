@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1624406876152,
+  "iteration": 1624653912921,
   "links": [
     {
       "asDropdown": false,
@@ -34,10 +34,6 @@
     {
       "collapsed": false,
       "datasource": null,
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -207,7 +203,7 @@
         ],
         "text": "Enable",
         "type": "query",
-        "url": "http://localhost:8080",
+        "url": "http://localhost:8080/properties-commands",
         "variant": "primary"
       },
       "pluginVersion": "7.1.5",
@@ -402,7 +398,7 @@
         ],
         "text": "Disable",
         "type": "query",
-        "url": "http://localhost:8080/",
+        "url": "http://localhost:8080/properties-commands",
         "variant": {
           "label": "Destructive",
           "value": "destructive"
@@ -1079,7 +1075,7 @@
         ],
         "text": "Reset Fingerprint",
         "type": "query",
-        "url": "http://localhost:8080/",
+        "url": "http://localhost:8080/properties-commands",
         "variant": "primary"
       },
       "pluginVersion": "7.1.5",
@@ -1165,7 +1161,7 @@
         ],
         "text": "Reset Fingerprint",
         "type": "query",
-        "url": "http://localhost:8080/",
+        "url": "http://localhost:8080/properties-commands",
         "variant": "primary"
       },
       "pluginVersion": "7.1.5",
@@ -1214,10 +1210,6 @@
     {
       "collapsed": false,
       "datasource": null,
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1842,7 +1834,7 @@
       }
     }
   ],
-  "refresh": "",
+  "refresh": "5s",
   "schemaVersion": 30,
   "style": "dark",
   "tags": [],
@@ -1852,8 +1844,8 @@
         "allValue": null,
         "current": {
           "selected": false,
-          "text": "vt_stm",
-          "value": "vt_stm"
+          "text": "MyMXChipDevice",
+          "value": "MyMXChipDevice"
         },
         "datasource": "InfluxDB",
         "definition": "",
