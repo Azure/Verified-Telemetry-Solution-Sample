@@ -22,13 +22,6 @@ Verified Telemetry (VT) is a state-of-the-art solution to determine the health o
 ## Steps to setup Custom Solution Template
 This getting started guide will help you setup VT solution sample, which allows users to collect fingerprints on-the-fly, view telemetry data and telemetry status in a dashboard. The solution sample is developed as a docker container image, thus enabling users to seamlessly interact with VT enabled device. 
 
-### Note on methods to setup Solution Sample
-You can setup the solution sample in of the two ways mentioned below:
-  * Using Docker Desktop: If you already have installed docker or know how docker works, we suggest to run the solution sample using docker desktop. Please jump to [Step 1](https://github.com/Azure/Verified-Telemetry-Solution-Sample#step-1-clone-the-repository).
-
-  * Using Azure DevOps Pipelines: If you do not wish to install docker desktop, we suggest you to follow our [guide](https://github.com/Azure/Verified-Telemetry-Solution-Sample/blob/main/docs/AzurePipeline.md) on setting up the Solution Sample Using Azure Container Registry and Azure DevOps Pipelines. 
-    >Note: After completing the setup using Azure Containers and Azure DevOps, you can continue referring to this guide from [Step 6](https://github.com/Azure/Verified-Telemetry-Solution-Sample#step-6-enter-following-credentials)
-
 ### Prerequisites
 * Setup one of the board specific device samples: 
     * MXCHIP: 
@@ -53,26 +46,7 @@ git clone --recursive https://github.com/Azure/Verified-Telemetry-Solution-Sampl
 * If you run into issues, please see [Docker Troubleshooting page](https://docs.docker.com/docker-for-windows/troubleshoot/) for more details
 * Ensure Docker Desktop is up and running (click the system tray icon on the task bar to see the docker status)
 
-### Step 3: Get IoT Hub Connection String
-* In your CLI console, run the [az iot hub show-connection-string](https://docs.microsoft.com/en-us/cli/azure/iot/hub?view=azure-cli-latest#az-iot-hub-show-connection-string) command to get the connection string for your IoT hub.
-
-    ```shell
-    az iot hub show-connection-string --name {YourIoTHubName}
-    ```
-### Step 4: Modify configuration file for Azure IoT settings
-This is a very important step to ensure the docker image knows which IoT device to connect to. Please provide the following details: 
-
-* Open the following file in a text editor:
-
-    > *Verified-Telemetry-Solution-Sample\constants.js*
-* Set the Azure IoT device information constants
-  |Constant name|Value|Example|
-  |-------------|-------|------|
-  |`connectionString` |{*Your IoT Hub Connection String*}| e.g., 'HostName=xxxxxxx.azure-devices.net; SharedAccessKeyName=iothubowner; SharedAccessKey=xxxxxxxxxxx'| 
-  |`deviceId` |{*Your device ID*}| e.g., MyMXChipDevice|
-
-  > NOTE: Make sure that you provide the IoT Hub connection string and not the device connection string
-### Step 4: Run the Docker application
+### Step 3: Run the Docker application
   * Install [VS Code](https://code.visualstudio.com/download)
   * Open the Extensions view (Ctrl+Shift+X), search for docker to filter results and select Docker extension authored by Microsoft.
 
@@ -92,10 +66,53 @@ NOTE: If you do not want to use VS code and the docker extension, you can run th
   ```shell
   docker-compose up -d
   ```
-### Step 5: Open your browser and navigate to below URL
-> http://localhost:3030
 
-![Login Page](./media/login.png)
+### Step 4: Get IoT Hub Connection String
+* In your CLI console, run the [az iot hub show-connection-string](https://docs.microsoft.com/en-us/cli/azure/iot/hub?view=azure-cli-latest#az-iot-hub-show-connection-string) command to get the connection string for your IoT hub.
+
+    ```shell
+    az iot hub show-connection-string --name {YourIoTHubName}
+    ```
+  
+### Step 5: Configure Azure IoT Hub and Device ID settings
+This is a very important step to ensure the custom solution can fetch telemetry from Azure Event Hub and send command & property updates to your IoT Device
+
+* Open your browser and navigate to below URL to access the Solution Sample Configuration Form
+  > http://localhost:8080/
+
+  ![Solution Sample Configuration Form](./media/config_landing_page.png)
+
+* Enter Azure IoT Hub Connection String and IoT Device ID and hit Save Configuration
+
+  |Field|Value|Example|
+  |-------------|-------|------|
+  |`IoT Hub Connection String` |{*Your IoT Hub Connection String saved in [Step 4](https://github.com/Azure/Verified-Telemetry-Solution-Sample#step-4-get-iot-hub-connection-string)*}| e.g., 'HostName=xxxxxxx.azure-devices.net; SharedAccessKeyName=iothubowner; SharedAccessKey=xxxxxxxxxxx'|
+  |`Device ID` |{*Your device ID*}| e.g., MyMXChipDevice|
+
+  ![Save Config](./media/config_landing_page_save.png)
+  
+
+* Upon successful configuration the following message would be displayed
+
+  >Click on the link to navigate to the solution sample landing page
+
+  ![Successful Configuration](./media/config_landing_page_success_redirect.png)
+
+
+* If an illegal IoT Hub Connection String is provided, you might see the following error message
+
+  >Re-open and re-fill the configuration settings form and ensure that a valid IoT Hub Connection String is provided
+
+  ![Failure in Configuration](./media/config_landing_page_error_redirect.png)
+
+
+### Step 5: Open Solution Sample landing page
+
+* Open your browser and navigate to below URL
+  > http://localhost:3030
+
+  ![Login Page](./media/login.png)
+  
 ### Step 6: Enter following credentials
 |Credential|Default Value|
 |-------------|-----|
@@ -123,7 +140,7 @@ You can skip the password reset and proceed forward.
 * In order to get VT status for Soil Moisture 1 telemetry, we should collect a fingerprint template (ideally once).
 * To collect the fingerprint template for the attached sensor 'Soil Moisture 1' telemetry, issue command `Set/Reset Fingerprint Template`
 
-  > Note: If the fingerprint template is not set for a device, VT status cannot be obtained and will result in telemetry data shown in *red*
+  > Note: If the fingerprint template is not set for a device, VT status cannot be obtained and will result in unverified telemetry data shown in *orange*
 
     ![Issue command to setup VT for telemetry soilMoistureExternal1 ](./media/dashboard_reset-1.png)
 
@@ -132,7 +149,7 @@ You can skip the password reset and proceed forward.
 * In order to get VT status for Soil Moisture 2 telemetry, we should collect a fingerprint template (ideally once).
 * To collect the fingerprint template for the attached sensor 'Soil Moisture 2' telemetry, issue command `Set/Reset Fingerprint Template`
 
-  > Note: If the fingerprint template is not set for a sensor, VT status cannot be obtained and will result in telemetry data shown in *RED*
+  > Note: If the fingerprint template is not set for a sensor, VT status cannot be obtained and will result in unverified telemetry data shown in *orange*
 
     ![Issue command to setup VT for telemetry soilMoistureExternal2](./media/dashboard_reset-2.png)
 
@@ -171,6 +188,11 @@ You can skip the password reset and proceed forward.
 * Q: Does the solution sample display Telemetries which are not supported by Verified Telemetry feature?
     * A: Yes! You can scroll down to see the telemetries which are not supported by VT in the device samples. These telemetries can be identified by a lack of 'vT' + 'Telemetry Name' component in the Digital Twin.
     ![Unsupported Telmetries](media/Grafana-unverified.png)  
+* Q: Can the solution be reconfigured to  read and interact with a new device which might be connected to a different IoT Hub?
+    * A: Yes! Open your browser and navigate to below URL
+      > http://localhost:8080/configuration-form
+      
+      Submitting this form with new and valid details will re-configure the solution sample to read and interact with a new device
 
 ## Next Steps
 * With this sample, you have now setup a Verified Telemetry Custom Solution Sample and interacted with a Verified Telemetry Device Sample

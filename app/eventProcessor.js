@@ -1,13 +1,20 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-const influxwriter = require('./influxWriter')
+const { EventHubClient, EventPosition } = require('@azure/event-hubs')
+const influxwriter = require('./influxReaderWriter')
 const { checkVerifiedTelemetrySupport, getVerifiedTelemetryStatus } = require('./verifiedTelemetryProcessor')
-const constants = require('./constants')
+const iotHubConfiguration = require('./iotHubConfiguration')
 
 const printError = function (err)
 {
     console.log(err.message)
+}
+
+const printErrorRetry = function (err)
+{
+    console.log(err.message)
+    setTimeout(eventHubReader, 5000)
 }
 
 const processMessage = function (message)
@@ -27,9 +34,9 @@ const processMessage = function (message)
         componentName = 'Default Component'
     }
     console.log('Received Telemetry')
-    if (deviceId === constants.deviceId)
+    if (deviceId === iotHubConfiguration.deviceId)
     {
-        console.log('Received Telemetry for device:', constants.deviceId)
+        console.log('Received Telemetry for device:', iotHubConfiguration.deviceId)
         for (const key of Object.keys(body))
         {
             influxwriter.writeTelemetryToInfluxDB(
@@ -43,4 +50,25 @@ const processMessage = function (message)
     }
 }
 
-module.exports = { printError: printError, processMessage: processMessage }
+async function eventHubReader ()
+{
+    let ehClient
+
+    EventHubClient.createFromIotHubConnectionString(iotHubConfiguration.connectionString).then(function (client)
+    {
+        console.log('Successfully created the EventHub Client from iothub connection string.')
+        ehClient = client
+        return ehClient.getPartitionIds()
+    }).then(function (ids)
+    {
+        console.log('The partition ids are: ', ids)
+        return ids.map(function (id)
+        {
+            return ehClient.receive(id, processMessage, printError,
+                { eventPosition: EventPosition.fromEnqueuedTime(Date.now()) }
+            )
+        })
+    }).catch(printErrorRetry)
+}
+
+module.exports = { eventHubReader: eventHubReader }
