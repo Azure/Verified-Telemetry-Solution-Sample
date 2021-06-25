@@ -78,7 +78,7 @@ NOTE: If you do not want to use VS code and the docker extension, you can run th
 This is a very important step to ensure the custom solution can fetch telemetry from Azure Event Hub and send command & property updates to your IoT Device
 
 * Open your browser and navigate to below URL to access the Solution Sample Configuration Form
-  > http://localhost:8080/configuration-form
+  > http://localhost:8080/
 
   ![Solution Sample Configuration Form](./media/config_landing_page.png)
 
