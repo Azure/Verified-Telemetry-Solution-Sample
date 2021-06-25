@@ -17,12 +17,12 @@ const checkVerifiedTelemetrySupport = function (telemetryName, additionalPropert
         if (digitalTwinLocalCopy[verifiedTelemetryComponentName].hasOwnProperty('fingerprintTemplate') &&
             digitalTwinLocalCopy.vTDevice.enableVerifiedTelemetry === true)
         {
-            console.log('Verified Telemetry: Reference Fingerprint collected')
+            console.log('Verified Telemetry: Reference Fingerprint available')
             return (true)
         }
         else
         {
-            console.log('Verified Telemetry: Reference Fingerprint not collected')
+            console.log('Verified Telemetry: Reference Fingerprint not available')
             return (false)
         }
     }
