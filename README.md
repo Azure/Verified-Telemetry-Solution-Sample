@@ -123,13 +123,13 @@ You can skip the password reset and proceed forward.
 
 ### Step 7: View the Dashboard
 -  Navigate to Search -> Verified Telemetry Dashboard
-  ![Search and Select Dashboard ](./media/dashboard_search_select.png)
+  ![Search and Select Dashboard ](./media/vt-search.png)
 
 -  Select your deviceName from the drop down.
 
 ### Step 8: Select the Device From the Drop-Down Menu
 
-* Select the device configured with Verified Telemetry.
+* Select the device configured with Verified Telemetry, here we use **SolutionSampleTestDevice** as the device. 
   ![Device Drop-Down](./media/vt-device-drop-down.png)
 
 
@@ -138,14 +138,18 @@ You can skip the password reset and proceed forward.
 ### Select Sensor to Monitor and Configure 
 * Verified Telemetry Dashboard supports multiple telemetry streams, these can be selected using the drop-down menus at the top of the page labeled **Telemetry1** and **Telemetry2**.
 * Select the telemetries configured with Verified Telemetry in the Device Sample from the drop-down menus, for example : **soilMoistureExternal1** or **PMSExternal1**.
+
   ![Drop-Down 1](./media/drop-down-1.png)
+  * Telemetry1 Drop-Down menu
+
   ![Drop-Down 2](./media/drop-down-2.png)
+  * Telemetry2 Drop-Down menu
 
 ### Enable Verified Telemetry
 * By default, Verified Telemetry is enabled and the status is shown on the right-hand side of the dashboard as seen in the image below.
 * If the status is disabled, Please click the `Enable` button to turn ON Verified Telemetry. 
 
-    ![Setting enableVerifiedTelemetry true ](./media/enable-vt.png)
+    ![Setting enableVerifiedTelemetry true ](./media/reset-fingerprint.png)
 
 
 ### Collect Fingerprint Template for Soil Moisture 1 telemetry 
@@ -154,7 +158,7 @@ You can skip the password reset and proceed forward.
 
   > Note: If the fingerprint template is not set for a device, VT status cannot be obtained and will result in unverified telemetry data shown in *orange*
 
-    ![Issue command to setup VT for telemetry soilMoistureExternal1 ](./media/reset-fingerprint.png)
+    ![Issue command to setup VT for telemetry soilMoistureExternal1 ](./media/enable-vt.png)
 
 
 ## Consuming Verified Telemetry Information  
@@ -166,7 +170,11 @@ You can skip the password reset and proceed forward.
 * To test whether the attached sensors are working as expected, hold the moisture sensor in your palm as shown below. Since these sensors are capacitive sensors, more the moisture lower is their output. We can see this expected decrease on the solution sample dashboard.
 
     ![Soil Moisture in Hand GIF](media/sensor-palm.gif)
-    ![Soil Moisture in Hand Data](media/Grafana-holdhand.png)
+   * Soil Moisture Sensor in Hand
+
+
+    ![Soil Moisture in Hand Data](media/soil-moisture-demo.png)
+   * Soil Moisture Sensor Telemetry
 
 * `Simulate a faulty sensor:` To simulate a faulty sensor, just disconnect Ground Pin (GND) on the Soil Moisture Sensor 1 which would create an Open Port fault!
 
@@ -180,18 +188,12 @@ You can skip the password reset and proceed forward.
 * Q: What happens if the device reboots after collection of Fingerprint Template?
     * A: Our library stores the Verified Telemetry Fingerprint Templates in the Digital Twin. By fetching the Digital Twin after reboot, the device goes back to its original state that it was in before reboot. Thus, user collects the fingerprint template only once when the sensor is provisioned and working. 
 
-    * The image below showcases the three states the device goes through:
-      1. State 1: Before Reboot
-      2. State 2: After Reboot, BEFORE Digital Twin sync (since no template is found, telemetry status is unknown and shown in RED) 
-      2. State 3: After Reboot, AFTER Digital Twin sync (template is synced and telemetry status is verified and shown in GREEN)
-
-      ![Device Reboot](media/Grafana-reboot.png)
 * Q: What happens if Verified Telemetry is disabled by the property *enableVerifiedTelemetry* ?
-    * A: The telemetry status of all telemetries supported by Verified Telemetry go to *false*, indicating that the telemetries are not Verified.
-    ![VT Disabled](media/Grafana-disable.png) 
+    * A: The telemetry status of all telemetries supported by Verified Telemetry go to *unverified* and the telemetry plot turns Yellow, indicating that the telemetries are not Verified.
+    ![VT Disabled](media/vt-disable.png) 
 * Q: Does the solution sample display Telemetries which are not supported by Verified Telemetry feature?
-    * A: Yes! You can scroll down to see the telemetries which are not supported by VT in the device samples. These telemetries can be identified by a lack of 'vT' + 'Telemetry Name' component in the Digital Twin.
-    ![Unsupported Telmetries](media/Grafana-unverified.png)  
+    * A: Yes! You can scroll down in the **Telemetry1** and **Telemetry2** Drop-Down menus to see the telemetries which are not supported by VT in the device samples. These telemetries would have a Yellow plot as they are not verified.
+    ![Unsupported Telmetries](media/other-telemetries.png)  
 * Q: Can the solution be reconfigured to  read and interact with a new device which might be connected to a different IoT Hub?
     * A: Yes! Open your browser and navigate to below URL
       > http://localhost:8080/configuration-form
