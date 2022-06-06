@@ -127,13 +127,25 @@ You can skip the password reset and proceed forward.
 
 -  Select your deviceName from the drop down.
 
+### Step 8: Select the Device From the Drop-Down Menu
+
+* Select the device configured with Verified Telemetry.
+  ![Device Drop-Down](./media/vt-device-drop-down.png)
+
 
 ## Steps to setup Verified Telemetry Configuration
+
+### Select Sensor to Monitor and Configure 
+* Verified Telemetry Dashboard supports multiple telemetry streams, these can be selected using the drop-down menus at the top of the page labeled **Telemetry1** and **Telemetry2**.
+* Select the telemetries configured with Verified Telemetry in the Device Sample from the drop-down menus, for example : **soilMoistureExternal1** or **PMSExternal1**.
+  ![Drop-Down 1](./media/drop-down-1.png)
+  ![Drop-Down 2](./media/drop-down-2.png)
+
 ### Enable Verified Telemetry
 * By default, Verified Telemetry is enabled and the status is shown on the right-hand side of the dashboard as seen in the image below.
 * If the status is disabled, Please click the `Enable` button to turn ON Verified Telemetry. 
 
-    ![Setting enableVerifiedTelemetry true ](./media/dashboard_enable.png)
+    ![Setting enableVerifiedTelemetry true ](./media/enable-vt.png)
 
 
 ### Collect Fingerprint Template for Soil Moisture 1 telemetry 
@@ -142,22 +154,14 @@ You can skip the password reset and proceed forward.
 
   > Note: If the fingerprint template is not set for a device, VT status cannot be obtained and will result in unverified telemetry data shown in *orange*
 
-    ![Issue command to setup VT for telemetry soilMoistureExternal1 ](./media/dashboard_reset-1.png)
+    ![Issue command to setup VT for telemetry soilMoistureExternal1 ](./media/reset-fingerprint.png)
 
-
-### Collect Fingerprint Template for Soil Moisture 2 telemetry 
-* In order to get VT status for Soil Moisture 2 telemetry, we should collect a fingerprint template (ideally once).
-* To collect the fingerprint template for the attached sensor 'Soil Moisture 2' telemetry, issue command `Set/Reset Fingerprint Template`
-
-  > Note: If the fingerprint template is not set for a sensor, VT status cannot be obtained and will result in unverified telemetry data shown in *orange*
-
-    ![Issue command to setup VT for telemetry soilMoistureExternal2](./media/dashboard_reset-2.png)
 
 ## Consuming Verified Telemetry Information  
 * Now that for both the sensors working fingerprint template is collected, we can now see both the device status and telemetry status. 
 * The property `Device Status` indicates that all the telemetries supported by Verified Telemetry (i.e., Soil Moisture 1 and 2) are verified and the telemetry color *GREEN* indicates that both Soil Moisture 1 and Soil Moisture 2 telemetries are verified. 
 
-    ![Checking deviceStatus ](media/Grafana-working.png)
+    ![Checking deviceStatus ](media/device-working.png)
 
 * To test whether the attached sensors are working as expected, hold the moisture sensor in your palm as shown below. Since these sensors are capacitive sensors, more the moisture lower is their output. We can see this expected decrease on the solution sample dashboard.
 
@@ -168,7 +172,7 @@ You can skip the password reset and proceed forward.
 
     * We can see that the telemetry data still shows some data, which is typically garbage/dirty. Detecting such data as garbage/faulty is non-trivial and VT automatically detects the faulty sensor and changes the telemetry color to *RED*
    
-    ![Fault in telemetry soilMoistureExternal2](media/Grafana-fault.png)
+    ![Fault in telemetry soilMoistureExternal2](media/faulty-sensor.png)
 
     * You can now connect back the Ground Pin to the sensor and see that telemetry color of 'Soil Moisture 1' sensor turning to *GREEN* immediately. 
 
