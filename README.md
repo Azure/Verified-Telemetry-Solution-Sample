@@ -122,7 +122,7 @@ This is a very important step to ensure the custom solution can fetch telemetry 
 You can skip the password reset and proceed forward.
 
 ### Step 7: View the Dashboard
--  Navigate to Search -> Verified Telemetry Dashboard
+-  Navigate to Search -> **Verified Telemetry -1** Dashboard
   ![Search and Select Dashboard ](./media/vt-search.png)
 
 -  Select your deviceName from the drop down.
@@ -162,7 +162,7 @@ You can skip the password reset and proceed forward.
 
 
 ## Consuming Verified Telemetry Information  
-* Now that for both the sensors working fingerprint template is collected, we can now see both the device status and telemetry status. 
+* Now that for all the sensors, a working fingerprint template has been collected, we can now see both the device status and telemetry status. 
 * The property `Device Status` indicates that all the telemetries supported by Verified Telemetry (i.e., Soil Moisture 1 and 2) are verified and the telemetry color *GREEN* indicates that both Soil Moisture 1 and Soil Moisture 2 telemetries are verified. 
 
     ![Checking deviceStatus ](media/device-working.png)
