@@ -15,8 +15,8 @@ Verified Telemetry (VT) is a state-of-the-art solution to determine the health o
 
 | |Description |
 |-|-|
-|[Verified Telemetry Device SDK](https://github.com/Azure/Verified-Telemetry) |The SDK which builds on the Azure RTOS middleware |
-|[Verified Telemetry Device Sample](https://github.com/Azure/Verified-Telemetry-Device-Sample) |These Getting Started guides shows device developers how to combine Verified Telemetry with [Azure IoT](https://azure.microsoft.com/overview/iot/) and [Azure RTOS](https://docs.microsoft.com/azure/rtos/). |
+|[Verified Telemetry Device SDK](https://github.com/Azure/Verified-Telemetry) |The SDK which builds on the Azure RTOS or FreeRTOS middleware |
+|[Azure RTOS samples](https://github.com/Azure/Verified-Telemetry-Device-Sample), [FreeRTOS samples](https://github.com/Azure-Samples/Verified-Telemetry-FreeRTOS-Sample) |These Getting Started guides shows device developers how to combine Verified Telemetry with [Azure IoT](https://azure.microsoft.com/overview/iot/) and Azure RTOS or FreeRTOS. |
 |[Verified Telemetry Custom Solution Sample](https://github.com/Azure/Verified-Telemetry-Solution-Sample) | Uses InfluxDB, Grafana and the [Azure IoT Node.js SDK](https://github.com/Azure/azure-iot-sdk-node) to communicate with [Azure IoT Hub](https://docs.microsoft.com/azure/iot-hub/) and showcase how the Verified Telemetry features can be utilized in real world scenarios.|
 
 ## Steps to setup Custom Solution Template
@@ -24,11 +24,10 @@ This getting started guide will help you setup VT solution sample, which allows 
 
 ### Prerequisites
 * Setup one of the board specific device samples: 
-    * MXCHIP: 
-      * [AZ3166](MXChip/AZ3166)
-    * STMicroelectronics:
-      * [B-L475E-IOT01A](STMicroelectronics/STM32L4_L4+)
-      * [B-L4S5I-IOT01A](STMicroelectronics/STM32L4_L4+)
+   * [Azure RTOS samples](https://github.com/Azure/Verified-Telemetry-Device-Sample)
+   * [FreeRTOS samples](https://github.com/Azure-Samples/Verified-Telemetry-FreeRTOS-Sample)
+
+
   > NOTE:  Ensure your device is up and running before you proceed to the next step
  
   > NOTE: Save the Device ID that you have configured
@@ -125,7 +124,6 @@ You can skip the password reset and proceed forward.
 -  Navigate to Search -> **Verified Telemetry -1** Dashboard
   ![Search and Select Dashboard ](./media/vt-search.png)
 
--  Select your deviceName from the drop down.
 
 ### Step 8: Select the Device From the Drop-Down Menu
 
