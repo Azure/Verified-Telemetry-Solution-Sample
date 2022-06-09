@@ -136,14 +136,15 @@ You can skip the password reset and proceed forward.
 ## Steps to setup Verified Telemetry Configuration
 
 ### Select Sensor to Monitor and Configure 
-* Verified Telemetry Dashboard supports multiple telemetry streams, these can be selected using the drop-down menus at the top of the page labeled **Telemetry1** and **Telemetry2**.
-* Select the telemetries configured with Verified Telemetry in the Device Sample from the drop-down menus, for example : **soilMoistureExternal1** or **PMSExternal1**.
+* Verified Telemetry Dashboard supports multiple telemetry streams. 2 sensors can be monitored at the same time, these can be selected using the drop-down menus at the top of the page labeled **Telemetry1** and **Telemetry2**.
+* Select the telemetries configured with Verified Telemetry in the Device Sample from the drop-down menus, for example: **Telemetry1 : soilMoistureExternal1** or **Telemetry2 : PMSExternal1**. The graph and command button changes automatically to work with the sensors selected in the drop-down menu. 
 
-  ![Drop-Down 1](./media/drop-down-1.png)
   * Telemetry1 Drop-Down menu
+  ![Drop-Down 1](./media/drop-down-1.png)
 
-  ![Drop-Down 2](./media/drop-down-2.png)
   * Telemetry2 Drop-Down menu
+  ![Drop-Down 2](./media/drop-down-2.png)
+
 
 ### Enable Verified Telemetry
 * By default, Verified Telemetry is enabled and the status is shown on the right-hand side of the dashboard as seen in the image below.
@@ -169,12 +170,12 @@ You can skip the password reset and proceed forward.
 
 * To test whether the attached sensors are working as expected, hold the moisture sensor in your palm as shown below. Since these sensors are capacitive sensors, more the moisture lower is their output. We can see this expected decrease on the solution sample dashboard.
 
-    ![Soil Moisture in Hand GIF](media/sensor-palm.gif)
    * Soil Moisture Sensor in Hand
+    ![Soil Moisture in Hand GIF](media/sensor-palm.gif)
 
-
-    ![Soil Moisture in Hand Data](media/soil-moisture-demo.png)
    * Soil Moisture Sensor Telemetry
+    ![Soil Moisture in Hand Data](media/soil-moisture-demo.png)
+
 
 * `Simulate a faulty sensor:` To simulate a faulty sensor, just disconnect Ground Pin (GND) on the Soil Moisture Sensor 1 which would create an Open Port fault!
 
